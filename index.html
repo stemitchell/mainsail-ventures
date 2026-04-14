@@ -69,35 +69,25 @@ nav {
   border-bottom: 1px solid rgba(196, 147, 63, 0.1);
   transition: all 0.3s;
 }
-
-nav.scrolled {
-  height: 64px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
-}
+nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
 
 .nav-logo {
   display: flex; align-items: center; gap: 16px;
   text-decoration: none; color: var(--white);
 }
-
 .nav-logo svg { width: 38px; height: 38px; flex-shrink: 0; }
 
-.nav-wordmark {
-  display: flex; flex-direction: column; line-height: 1;
-}
-
+.nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
 .nav-wordmark .name {
   font-family: 'Cormorant Garamond', serif;
   font-size: 20px; font-weight: 600; letter-spacing: 1.5px;
 }
-
 .nav-wordmark .sub {
   font-size: 9px; font-weight: 600; letter-spacing: 4px;
   color: var(--gold); text-transform: uppercase; margin-top: 2px;
 }
 
 .nav-links { display: flex; gap: 40px; list-style: none; }
-
 .nav-links a {
   color: rgba(255,255,255,0.6); text-decoration: none;
   font-size: 13px; font-weight: 500; letter-spacing: 0.6px;
@@ -119,10 +109,7 @@ nav.scrolled {
   letter-spacing: 1.5px; text-transform: uppercase;
   text-decoration: none; transition: all 0.3s;
 }
-.nav-cta:hover {
-  background: var(--gold); color: var(--navy);
-  border-color: var(--gold);
-}
+.nav-cta:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
 
 .mobile-menu-btn {
   display: none; background: none; border: none;
@@ -130,26 +117,20 @@ nav.scrolled {
 }
 .mobile-menu-btn span {
   display: block; width: 24px; height: 2px;
-  background: var(--white); margin: 5px 0;
-  transition: all 0.3s;
+  background: var(--white); margin: 5px 0; transition: all 0.3s;
 }
 
 /* ===================== HERO ===================== */
 .hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  background: var(--navy);
-  position: relative; overflow: hidden;
+  min-height: 100vh; display: flex; align-items: center;
+  background: var(--navy); position: relative; overflow: hidden;
 }
-
 .hero-bg {
   position: absolute; inset: 0;
   background:
     radial-gradient(ellipse 70% 50% at 65% 45%, rgba(21, 54, 96, 0.7), transparent 70%),
     radial-gradient(ellipse 40% 40% at 15% 85%, rgba(196, 147, 63, 0.06), transparent);
 }
-
-/* Subtle grid texture */
 .hero-grid {
   position: absolute; inset: 0; opacity: 0.03;
   background-image:
@@ -157,18 +138,14 @@ nav.scrolled {
     linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
   background-size: 72px 72px;
 }
-
-/* Decorative compass rose, far right */
 .hero-ornament {
   position: absolute; right: 6%; top: 50%;
   transform: translateY(-50%); opacity: 0.04;
 }
-
 .hero-content {
   position: relative; z-index: 2;
   max-width: 760px; padding: 140px 56px 120px;
 }
-
 .hero-label {
   display: inline-flex; align-items: center; gap: 12px;
   font-size: 11px; font-weight: 700; letter-spacing: 3.5px;
@@ -176,10 +153,7 @@ nav.scrolled {
   margin-bottom: 36px;
   opacity: 0; animation: fadeUp 0.7s ease-out 0.3s forwards;
 }
-.hero-label::before {
-  content: ''; width: 32px; height: 1px;
-  background: var(--gold);
-}
+.hero-label::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
 
 .hero h1 {
   font-size: clamp(40px, 5.2vw, 68px);
@@ -187,11 +161,7 @@ nav.scrolled {
   margin-bottom: 28px; font-weight: 500;
   opacity: 0; animation: fadeUp 0.8s ease-out 0.5s forwards;
 }
-
-.hero h1 em {
-  font-style: italic; color: var(--gold);
-  font-weight: 400;
-}
+.hero h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
 
 .hero-desc {
   font-size: 17px; line-height: 1.85;
@@ -199,38 +169,29 @@ nav.scrolled {
   max-width: 540px; margin-bottom: 48px;
   opacity: 0; animation: fadeUp 0.8s ease-out 0.7s forwards;
 }
-
 .hero-actions {
   display: flex; gap: 16px; flex-wrap: wrap;
   opacity: 0; animation: fadeUp 0.8s ease-out 0.9s forwards;
 }
 
 .btn-gold {
-  display: inline-block;
-  background: var(--gold); color: var(--navy);
+  display: inline-block; background: var(--gold); color: var(--navy);
   padding: 16px 40px; font-size: 13px; font-weight: 700;
   letter-spacing: 1.2px; text-transform: uppercase;
-  border: none; cursor: pointer; text-decoration: none;
-  transition: all 0.35s;
+  border: none; cursor: pointer; text-decoration: none; transition: all 0.35s;
 }
 .btn-gold:hover {
-  background: var(--gold-hover);
-  transform: translateY(-2px);
+  background: var(--gold-hover); transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(196, 147, 63, 0.25);
 }
-
 .btn-outline {
-  display: inline-block;
-  background: transparent; color: rgba(255,255,255,0.8);
+  display: inline-block; background: transparent; color: rgba(255,255,255,0.8);
   padding: 16px 40px; font-size: 13px; font-weight: 600;
   letter-spacing: 1.2px; text-transform: uppercase;
   border: 1px solid rgba(255,255,255,0.2);
   text-decoration: none; transition: all 0.35s;
 }
-.btn-outline:hover {
-  border-color: rgba(255,255,255,0.5);
-  color: var(--white);
-}
+.btn-outline:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
 
 /* ===================== STATS BAR ===================== */
 .stats {
@@ -238,7 +199,6 @@ nav.scrolled {
   display: grid; grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid rgba(196, 147, 63, 0.12);
 }
-
 .stat {
   padding: 44px 32px; text-align: center;
   border-right: 1px solid rgba(255,255,255,0.04);
@@ -246,372 +206,206 @@ nav.scrolled {
 }
 .stat:last-child { border-right: none; }
 .stat:hover { background: rgba(255,255,255,0.02); }
-
 .stat-value {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 40px; font-weight: 600;
-  color: var(--gold); margin-bottom: 8px;
+  font-size: 40px; font-weight: 600; color: var(--gold); margin-bottom: 8px;
 }
-
 .stat-label {
   font-size: 11px; color: rgba(255,255,255,0.4);
-  letter-spacing: 2px; text-transform: uppercase;
-  font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
 }
 
 /* ===================== ABOUT ===================== */
-.about {
-  padding: 120px 56px;
-  background: var(--cream);
-}
-
-.section-header {
-  margin-bottom: 56px;
-}
-
+.about { padding: 120px 56px; background: var(--cream); }
+.section-header { margin-bottom: 56px; }
 .section-label {
   display: inline-flex; align-items: center; gap: 12px;
   font-size: 11px; font-weight: 700; letter-spacing: 3.5px;
-  text-transform: uppercase; color: var(--gold);
-  margin-bottom: 20px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
 }
-.section-label::before {
-  content: ''; width: 24px; height: 1px;
-  background: var(--gold);
-}
-
+.section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
 .section-header h2 {
   font-size: clamp(30px, 3.8vw, 46px);
-  line-height: 1.15; color: var(--navy);
-  margin-bottom: 20px;
+  line-height: 1.15; color: var(--navy); margin-bottom: 20px;
 }
-
 .section-header .lead {
-  font-size: 17px; line-height: 1.85;
-  color: var(--text-body); max-width: 600px;
+  font-size: 17px; line-height: 1.85; color: var(--text-body); max-width: 600px;
 }
-
 .about-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
   gap: 72px; align-items: start;
 }
-
 .about-prose p {
-  font-size: 16px; line-height: 1.9;
-  color: var(--text-body); margin-bottom: 20px;
+  font-size: 16px; line-height: 1.9; color: var(--text-body); margin-bottom: 20px;
 }
+.about-prose p strong { color: var(--navy); font-weight: 600; }
 
-.about-prose p strong {
-  color: var(--navy); font-weight: 600;
-}
-
-.values-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
+.values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .value-card {
-  background: var(--white);
-  padding: 32px 28px;
-  border: 1px solid var(--divider);
-  transition: all 0.35s;
-  position: relative;
+  background: var(--white); padding: 32px 28px;
+  border: 1px solid var(--divider); transition: all 0.35s; position: relative;
 }
 .value-card::before {
   content: ''; position: absolute; top: 0; left: 0;
-  width: 0; height: 2px; background: var(--gold);
-  transition: width 0.35s;
+  width: 0; height: 2px; background: var(--gold); transition: width 0.35s;
 }
 .value-card:hover {
   border-color: rgba(196, 147, 63, 0.2);
-  box-shadow: 0 8px 32px rgba(11, 29, 58, 0.06);
-  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(11, 29, 58, 0.06); transform: translateY(-3px);
 }
 .value-card:hover::before { width: 100%; }
-
 .value-icon {
-  width: 42px; height: 42px;
-  background: var(--sand-light);
+  width: 42px; height: 42px; background: var(--sand-light);
   border-radius: 50%; margin-bottom: 18px;
   display: flex; align-items: center; justify-content: center;
 }
-
 .value-icon svg { width: 20px; height: 20px; }
-
-.value-card h4 {
-  font-size: 19px; color: var(--navy);
-  margin-bottom: 10px; font-weight: 600;
-}
-
-.value-card p {
-  font-size: 14px; line-height: 1.7;
-  color: var(--text-light);
-}
+.value-card h4 { font-size: 19px; color: var(--navy); margin-bottom: 10px; font-weight: 600; }
+.value-card p { font-size: 14px; line-height: 1.7; color: var(--text-light); }
 
 /* ===================== APPROACH ===================== */
 .approach {
-  padding: 120px 56px;
-  background: var(--navy);
+  padding: 120px 56px; background: var(--navy);
   position: relative; overflow: hidden;
 }
-
 .approach::before {
   content: ''; position: absolute;
   top: 0; right: 0; bottom: 0; width: 40%;
   background: radial-gradient(ellipse at 80% 50%, rgba(21, 54, 96, 0.5), transparent 70%);
 }
-
 .approach .section-header h2 { color: var(--white); }
 .approach .section-header .lead { color: rgba(255,255,255,0.5); }
-
 .steps {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 0; margin-top: 8px; position: relative; z-index: 1;
 }
-
-.step {
-  padding: 48px 40px;
-  border-right: 1px solid rgba(255,255,255,0.05);
-}
+.step { padding: 48px 40px; border-right: 1px solid rgba(255,255,255,0.05); }
 .step:last-child { border-right: none; }
-
 .step-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 72px; font-weight: 400;
-  color: rgba(196, 147, 63, 0.15);
-  line-height: 1; margin-bottom: 20px;
+  color: rgba(196, 147, 63, 0.15); line-height: 1; margin-bottom: 20px;
 }
-
-.step h3 {
-  font-size: 26px; color: var(--white);
-  margin-bottom: 16px; font-weight: 500;
-}
-
-.step p {
-  font-size: 15px; line-height: 1.85;
-  color: rgba(255,255,255,0.45);
-}
+.step h3 { font-size: 26px; color: var(--white); margin-bottom: 16px; font-weight: 500; }
+.step p { font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.45); }
 
 /* ===================== CRITERIA ===================== */
-.criteria {
-  padding: 120px 56px;
-  background: var(--sand-light);
-}
-
+.criteria { padding: 120px 56px; background: var(--sand-light); }
 .criteria-layout {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  display: grid; grid-template-columns: 1.2fr 0.8fr;
   gap: 64px; align-items: start;
 }
-
 .criteria-list { list-style: none; }
-
 .criteria-item {
-  padding: 28px 0;
-  border-bottom: 1px solid rgba(11, 29, 58, 0.06);
+  padding: 28px 0; border-bottom: 1px solid rgba(11, 29, 58, 0.06);
   display: flex; gap: 20px; align-items: flex-start;
 }
 .criteria-item:first-child { padding-top: 0; }
-
 .check-circle {
-  width: 32px; height: 32px; flex-shrink: 0;
-  background: var(--navy);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  margin-top: 2px;
+  width: 32px; height: 32px; flex-shrink: 0; background: var(--navy);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px;
 }
 .check-circle svg { width: 14px; height: 14px; }
-
-.criteria-item h4 {
-  font-size: 19px; color: var(--navy);
-  margin-bottom: 6px; font-weight: 600;
-}
-
-.criteria-item p {
-  font-size: 14px; line-height: 1.75;
-  color: var(--text-body);
-}
-
-.criteria-sidebar {
-  background: var(--white);
-  padding: 48px; border: 1px solid var(--divider);
-}
-
-.criteria-sidebar h3 {
-  font-size: 26px; color: var(--navy);
-  margin-bottom: 16px;
-}
-
-.criteria-sidebar p {
-  font-size: 15px; line-height: 1.85;
-  color: var(--text-body); margin-bottom: 32px;
-}
+.criteria-item h4 { font-size: 19px; color: var(--navy); margin-bottom: 6px; font-weight: 600; }
+.criteria-item p { font-size: 14px; line-height: 1.75; color: var(--text-body); }
+.criteria-sidebar { background: var(--white); padding: 48px; border: 1px solid var(--divider); }
+.criteria-sidebar h3 { font-size: 26px; color: var(--navy); margin-bottom: 16px; }
+.criteria-sidebar p { font-size: 15px; line-height: 1.85; color: var(--text-body); margin-bottom: 32px; }
 
 /* ===================== WHY MAINSAIL ===================== */
-.why {
-  padding: 120px 56px;
-  background: var(--cream);
-}
-
+.why { padding: 120px 56px; background: var(--cream); }
 .why-founder {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 56px; align-items: start;
-  margin-top: 8px;
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 56px; align-items: start; margin-top: 8px;
 }
-
 .founder-photo-wrap {
-  position: relative;
   border: 1px solid rgba(196, 147, 63, 0.3);
-  padding: 16px;
-  background: var(--white);
+  padding: 16px; background: var(--white);
 }
-
 .founder-photo {
   width: 100%; aspect-ratio: 4/5;
   object-fit: cover; object-position: center top;
-  display: block;
-  filter: grayscale(15%);
-  transition: filter 0.4s;
+  display: block; filter: grayscale(15%); transition: filter 0.4s;
 }
 .founder-photo:hover { filter: grayscale(0%); }
-
 .founder-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 600;
-  color: var(--navy); margin-top: 18px;
+  font-size: 22px; font-weight: 600; color: var(--navy); margin-top: 18px;
 }
-
 .founder-title {
-  font-size: 13px; color: var(--gold);
-  font-weight: 600; letter-spacing: 1.5px;
-  text-transform: uppercase; margin-top: 4px;
+  font-size: 13px; color: var(--gold); font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;
 }
-
 .founder-credentials {
-  list-style: none; margin-top: 14px;
-  padding-top: 14px;
+  list-style: none; margin-top: 14px; padding-top: 14px;
   border-top: 1px solid var(--divider);
 }
-
 .founder-credentials li {
-  font-size: 13px; color: var(--text-light);
-  line-height: 1.6; padding: 3px 0;
-  padding-left: 14px; position: relative;
+  font-size: 13px; color: var(--text-light); line-height: 1.6;
+  padding: 3px 0; padding-left: 14px; position: relative;
 }
 .founder-credentials li::before {
   content: ''; position: absolute; left: 0; top: 10px;
   width: 5px; height: 5px; border-radius: 50%;
   background: var(--gold); opacity: 0.5;
 }
-
-.why-content {
-  max-width: 720px;
-}
-
+.why-content { max-width: 720px; }
 .why-content blockquote {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(22px, 2.8vw, 32px);
   line-height: 1.55; color: var(--navy);
   font-style: italic; font-weight: 400;
-  margin-bottom: 24px;
-  padding-left: 28px;
+  margin-bottom: 24px; padding-left: 28px;
   border-left: 3px solid var(--gold);
 }
-
-.why-content .attribution {
-  font-size: 14px; color: var(--gold);
-  font-weight: 600; letter-spacing: 1px;
-  text-transform: uppercase;
-  padding-left: 28px;
-}
-
 .why-points {
-  margin-top: 56px;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
 }
-
-.why-point h4 {
-  font-size: 20px; color: var(--navy);
-  margin-bottom: 10px;
-}
-
-.why-point p {
-  font-size: 14px; line-height: 1.75;
-  color: var(--text-body);
-}
-
-.why-point .accent {
-  width: 28px; height: 2px;
-  background: var(--gold); margin-bottom: 20px;
-}
+.why-point h4 { font-size: 20px; color: var(--navy); margin-bottom: 10px; }
+.why-point p { font-size: 14px; line-height: 1.75; color: var(--text-body); }
+.why-point .accent { width: 28px; height: 2px; background: var(--gold); margin-bottom: 20px; }
 
 /* ===================== CTA / CONTACT ===================== */
 .cta {
-  padding: 120px 56px;
-  background: var(--navy-mid);
-  text-align: center;
-  position: relative; overflow: hidden;
+  padding: 120px 56px; background: var(--navy-mid);
+  text-align: center; position: relative; overflow: hidden;
 }
-
 .cta::before {
   content: ''; position: absolute; inset: 0;
   background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(21, 54, 96, 0.4), transparent);
 }
-
-.cta-inner {
-  position: relative; z-index: 1;
-  max-width: 640px; margin: 0 auto;
-}
-
+.cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
 .cta .section-label { justify-content: center; }
 .cta .section-label::before { display: none; }
-
 .cta h2 {
-  font-size: clamp(32px, 4vw, 50px);
-  color: var(--white); margin-bottom: 20px;
-  font-weight: 500;
+  font-size: clamp(32px, 4vw, 50px); color: var(--white);
+  margin-bottom: 20px; font-weight: 500;
 }
-
 .cta p {
   font-size: 17px; color: rgba(255,255,255,0.5);
   line-height: 1.85; margin-bottom: 40px;
 }
-
 .cta-email {
-  display: inline-block;
-  background: var(--gold); color: var(--navy);
+  display: inline-block; background: var(--gold); color: var(--navy);
   padding: 18px 48px; font-size: 14px; font-weight: 700;
-  letter-spacing: 1px; text-decoration: none;
-  transition: all 0.35s;
+  letter-spacing: 1px; text-decoration: none; transition: all 0.35s;
 }
 .cta-email:hover {
-  background: var(--gold-hover);
-  transform: translateY(-2px);
+  background: var(--gold-hover); transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(196, 147, 63, 0.3);
 }
-
-.cta-note {
-  margin-top: 20px;
-  font-size: 13px; color: rgba(255,255,255,0.3);
-}
+.cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.3); }
 
 /* ===================== FOOTER ===================== */
 footer {
-  background: var(--navy);
-  padding: 48px 56px;
+  background: var(--navy); padding: 48px 56px;
   border-top: 1px solid rgba(196, 147, 63, 0.08);
 }
-
 .footer-top {
   display: flex; justify-content: space-between;
   align-items: center; flex-wrap: wrap; gap: 24px;
-  padding-bottom: 36px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.04);
 }
-
 .footer-logo {
   display: flex; align-items: center; gap: 12px;
   text-decoration: none; color: var(--white);
@@ -621,24 +415,17 @@ footer {
   font-family: 'Cormorant Garamond', serif;
   font-size: 18px; font-weight: 600; letter-spacing: 1px;
 }
-
 .footer-nav { display: flex; gap: 32px; list-style: none; }
 .footer-nav a {
   color: rgba(255,255,255,0.4); text-decoration: none;
   font-size: 13px; font-weight: 500; transition: color 0.3s;
 }
 .footer-nav a:hover { color: var(--gold); }
-
 .footer-bottom {
-  padding-top: 28px;
-  display: flex; justify-content: space-between;
+  padding-top: 28px; display: flex; justify-content: space-between;
   align-items: center; flex-wrap: wrap; gap: 12px;
 }
-
-.footer-copy {
-  font-size: 12px; color: rgba(255,255,255,0.2);
-}
-
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
 .footer-email a {
   font-size: 13px; color: rgba(255,255,255,0.35);
   text-decoration: none; transition: color 0.3s;
@@ -660,35 +447,22 @@ footer {
   .why-points { grid-template-columns: 1fr; gap: 32px; }
   .hero-ornament { display: none; }
 }
-
 @media (max-width: 768px) {
   nav { padding: 0 24px; }
   .nav-links { display: none; }
   .nav-cta { display: none; }
   .mobile-menu-btn { display: block; }
-
   .hero-content { padding: 120px 24px 80px; }
   .hero h1 { font-size: 36px; }
   .hero-desc { font-size: 15px; }
   .hero-actions { flex-direction: column; }
   .btn-gold, .btn-outline { text-align: center; }
-
   .stats { grid-template-columns: repeat(2, 1fr); }
-
-  .about, .approach, .criteria, .why, .cta {
-    padding: 80px 24px;
-  }
-
+  .about, .approach, .criteria, .why, .cta { padding: 80px 24px; }
   .values-grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
-  .step {
-    border-right: none;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding: 36px 0;
-  }
-
+  .step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 36px 0; }
   .why-points { grid-template-columns: 1fr; }
-
   footer { padding: 36px 24px; }
   .footer-top { flex-direction: column; align-items: flex-start; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
@@ -721,7 +495,7 @@ footer {
     <li><a href="#why">Why Mainsail</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Get in Touch</a>
-  <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+  <button class="mobile-menu-btn" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -730,8 +504,6 @@ footer {
 <section class="hero" id="top">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-
-  <!-- Large compass ornament -->
   <svg class="hero-ornament" width="480" height="480" viewBox="0 0 400 400" fill="none">
     <circle cx="200" cy="200" r="190" stroke="white" stroke-width="0.4"/>
     <circle cx="200" cy="200" r="150" stroke="white" stroke-width="0.25"/>
@@ -741,7 +513,6 @@ footer {
     <path d="M200 50 L212 200 L200 350 L188 200 Z" stroke="white" stroke-width="0.4" fill="white" fill-opacity="0.03"/>
     <path d="M50 200 L200 188 L350 200 L200 212 Z" stroke="white" stroke-width="0.3" fill="white" fill-opacity="0.02"/>
   </svg>
-
   <div class="hero-content">
     <span class="hero-label">Business Acquisition &amp; Operations</span>
     <h1>Your Business Deserves a <em>Thoughtful</em> Transition</h1>
@@ -755,22 +526,10 @@ footer {
 
 <!-- ============ STATS ============ -->
 <div class="stats">
-  <div class="stat">
-    <div class="stat-value">15+</div>
-    <div class="stat-label">Years Experience</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">$1–10M</div>
-    <div class="stat-label">Revenue Range</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">100%</div>
-    <div class="stat-label">Operator Led</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">Long-Term</div>
-    <div class="stat-label">Hold Period</div>
-  </div>
+  <div class="stat"><div class="stat-value">15+</div><div class="stat-label">Years Experience</div></div>
+  <div class="stat"><div class="stat-value">$1&#8211;10M</div><div class="stat-label">Revenue Range</div></div>
+  <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Operator Led</div></div>
+  <div class="stat"><div class="stat-value">Long-Term</div><div class="stat-label">Hold Period</div></div>
 </div>
 
 <!-- ============ ABOUT ============ -->
@@ -779,40 +538,30 @@ footer {
     <div class="section-label">Who We Are</div>
     <h2>Built to Operate,<br>Not to Flip</h2>
   </div>
-
   <div class="about-grid">
     <div class="about-prose reveal reveal-delay-1">
       <p><strong>Mainsail Ventures was founded on a simple belief:</strong> great businesses deserve great stewardship.  Too many acquisitions prioritize financial engineering over the people, customers, and culture that made a business successful in the first place.</p>
       <p>We take a different approach.  As operator-owners, we step into the business alongside your team, bringing strategic leadership, operational expertise, and a genuine commitment to long-term growth.  We are not a fund with a five-year exit timeline.  We buy businesses to run them, improve them, and build on the foundation you created.</p>
       <p>Our background spans over 15 years of operations, human capital strategy, and business management across complex, multi-site organizations.  We have led workforce integrations, built infrastructure from scratch, and managed transitions at every scale.  We understand that every business has its own DNA, and we work to preserve what makes yours special while investing in its future.</p>
     </div>
-
     <div class="values-grid">
       <div class="value-card reveal reveal-delay-1">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><path d="M12 2L12 22M12 2L20 10M12 2L4 10"/></svg>
-        </div>
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><path d="M12 2L12 22M12 2L20 10M12 2L4 10"/></svg></div>
         <h4>Legacy First</h4>
         <p>Your business represents decades of work.  We honor that by preserving your team, your customers, and your reputation.</p>
       </div>
       <div class="value-card reveal reveal-delay-2">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
         <h4>Hands-On Ownership</h4>
         <p>We do not delegate from a distance.  Our team gets involved in day-to-day operations alongside your people.</p>
       </div>
       <div class="value-card reveal reveal-delay-3">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
         <h4>People Centered</h4>
         <p>Employees are not line items.  We invest in the people who built the business, creating growth paths and stability.</p>
       </div>
       <div class="value-card reveal reveal-delay-4">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
-        </div>
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div>
         <h4>Steady Growth</h4>
         <p>We pursue sustainable, disciplined growth through operational improvements, not aggressive cost-cutting.</p>
       </div>
@@ -827,7 +576,6 @@ footer {
     <h2>A Seamless Path Forward</h2>
     <p class="lead">Our acquisition process is designed to be straightforward, respectful of your time, and completely confidential from start to finish.</p>
   </div>
-
   <div class="steps">
     <div class="step reveal reveal-delay-1">
       <div class="step-num">01</div>
@@ -854,56 +602,29 @@ footer {
     <h2>Acquisition Criteria</h2>
     <p class="lead">We focus on established, profitable businesses in essential services industries where our operational expertise can drive sustainable growth.</p>
   </div>
-
   <div class="criteria-layout">
     <ul class="criteria-list">
       <li class="criteria-item reveal">
-        <div class="check-circle">
-          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <h4>Established Track Record</h4>
-          <p>Businesses operating profitably for 10 or more years with a strong local or regional reputation.</p>
-        </div>
+        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><h4>Established Track Record</h4><p>Businesses operating profitably for 10 or more years with a strong local or regional reputation.</p></div>
       </li>
       <li class="criteria-item reveal reveal-delay-1">
-        <div class="check-circle">
-          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <h4>Essential Services</h4>
-          <p>Industries where demand is steady and recurring, including fire suppression, safety, facilities, and building services.</p>
-        </div>
+        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><h4>Essential Services</h4><p>Industries where demand is steady and recurring, including fire suppression, safety, facilities, and building services.</p></div>
       </li>
       <li class="criteria-item reveal reveal-delay-2">
-        <div class="check-circle">
-          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <h4>Revenue Range</h4>
-          <p>Annual revenues between $1M and $10M with healthy margins and consistent cash flow.</p>
-        </div>
+        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><h4>Revenue Range</h4><p>Annual revenues between $1M and $10M with healthy margins and consistent cash flow.</p></div>
       </li>
       <li class="criteria-item reveal reveal-delay-3">
-        <div class="check-circle">
-          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <h4>Strong Team in Place</h4>
-          <p>Businesses where key employees are willing to stay through and beyond the ownership transition.</p>
-        </div>
+        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><h4>Strong Team in Place</h4><p>Businesses where key employees are willing to stay through and beyond the ownership transition.</p></div>
       </li>
       <li class="criteria-item reveal reveal-delay-4">
-        <div class="check-circle">
-          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <div>
-          <h4>Owner Seeking Succession</h4>
-          <p>Founders ready for retirement, a new chapter, or simply looking for the right buyer who will take care of what they built.</p>
-        </div>
+        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><h4>Owner Seeking Succession</h4><p>Founders ready for retirement, a new chapter, or simply looking for the right buyer who will take care of what they built.</p></div>
       </li>
     </ul>
-
     <div class="criteria-sidebar reveal reveal-delay-2">
       <h3>Not Sure If Your Business Qualifies?</h3>
       <p>Every business is unique.  Even if you do not check every box above, we would love to have a conversation.  Many of our best partnerships started with an exploratory call.</p>
@@ -918,7 +639,6 @@ footer {
     <div class="section-label">Why Mainsail</div>
     <h2>Most Buyers Look at Spreadsheets.<br>We Look at People.</h2>
   </div>
-
   <div class="why-founder">
     <div class="founder-photo-wrap reveal reveal-delay-1">
       <img src="Headshot.jpeg" alt="Steven - Founder and Principal of Mainsail Ventures" class="founder-photo">
@@ -931,12 +651,10 @@ footer {
         <li>Multi-entity integration expertise</li>
       </ul>
     </div>
-
     <div class="why-content reveal reveal-delay-2">
       <blockquote>You did not build this business to hand it off to a stranger with a spreadsheet.  Mainsail Ventures is led by an operator with over 15 years of experience managing teams, integrating organizations, and building the systems that make businesses run.  We are not learning on the job.  We are bringing a career's worth of leadership to yours.</blockquote>
     </div>
   </div>
-
   <div class="why-points">
     <div class="why-point reveal reveal-delay-1">
       <div class="accent"></div>
@@ -962,7 +680,7 @@ footer {
     <div class="section-label">Get in Touch</div>
     <h2>Ready to Explore<br>What's Next?</h2>
     <p>Whether you are actively looking to sell or just beginning to think about succession, we welcome a confidential, no-obligation conversation.</p>
-    <a href="/cdn-cgi/l/email-protection#8cfff8e9fae9cce1ede5e2ffede5e0a2ebfee3f9fc" class="cta-email"><span class="__cf_email__" data-cfemail="1467607162715479757d7a67757d783a73667b6164">[email&#160;protected]</span></a>
+    <a id="cta-email-link" href="#" class="cta-email"></a>
     <div class="cta-note">All inquiries are confidential.</div>
   </div>
 </section>
@@ -991,26 +709,62 @@ footer {
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">&copy; 2026 Mainsail Ventures.  All rights reserved.</div>
-    <div class="footer-email"><a href="/cdn-cgi/l/email-protection#2457504152416449454d4a57454d480a43564b5154"><span class="__cf_email__" data-cfemail="b6c5c2d3c0d3f6dbd7dfd8c5d7dfda98d1c4d9c3c6">[email&#160;protected]</span></a></div>
+    <div class="footer-email"><a id="footer-email-link" href="#"></a></div>
   </div>
 </footer>
 
 <!-- ============ SCRIPTS ============ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Scroll reveal: start hidden, reveal on scroll
-document.querySelectorAll('.reveal').forEach(el => el.classList.add('hidden'));
+<script>
+// Build email via JS to prevent Cloudflare email obfuscation
+(function() {
+  var u = 'steve';
+  var d = 'mainsail.group';
+  var full = u + String.fromCharCode(64) + d;
+  var ml = 'mai' + 'lto:' + full;
+  var a = document.getElementById('cta-email-link');
+  if (a) { a.href = ml; a.textContent = full; }
+  var b = document.getElementById('footer-email-link');
+  if (b) { b.href = ml; b.textContent = full; }
+})();
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+// Scroll reveal
+document.querySelectorAll('.reveal').forEach(function(el) {
+  el.classList.add('hidden');
+});
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
     if (entry.isIntersecting) {
       entry.target.classList.remove('hidden');
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -10px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(function(el) {
+  observer.observe(el);
+});
 
 // Nav scroll effect
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scro
+var navEl = document.getElementById('nav');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 60) {
+    navEl.classList.add('scrolled');
+  } else {
+    navEl.classList.remove('scrolled');
+  }
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
