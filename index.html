@@ -463,19 +463,15 @@ nav.scrolled {
 
 .founder-photo-wrap {
   position: relative;
-}
-
-.founder-photo-wrap::before {
-  content: ''; position: absolute;
-  top: 12px; left: 12px; right: -12px; bottom: -12px;
-  border: 1px solid var(--gold);
-  opacity: 0.3;
+  border: 1px solid rgba(196, 147, 63, 0.3);
+  padding: 16px;
+  background: var(--white);
 }
 
 .founder-photo {
   width: 100%; aspect-ratio: 4/5;
   object-fit: cover; object-position: center top;
-  display: block; position: relative; z-index: 1;
+  display: block;
   filter: grayscale(15%);
   transition: filter 0.4s;
 }
@@ -484,7 +480,7 @@ nav.scrolled {
 .founder-name {
   font-family: 'Cormorant Garamond', serif;
   font-size: 22px; font-weight: 600;
-  color: var(--navy); margin-top: 20px;
+  color: var(--navy); margin-top: 18px;
 }
 
 .founder-title {
@@ -494,8 +490,8 @@ nav.scrolled {
 }
 
 .founder-credentials {
-  list-style: none; margin-top: 16px;
-  padding-top: 16px;
+  list-style: none; margin-top: 14px;
+  padding-top: 14px;
   border-top: 1px solid var(--divider);
 }
 
@@ -966,7 +962,7 @@ footer {
     <div class="section-label">Get in Touch</div>
     <h2>Ready to Explore<br>What's Next?</h2>
     <p>Whether you are actively looking to sell or just beginning to think about succession, we welcome a confidential, no-obligation conversation.</p>
-    <a href="mailto:steve@mainsail.group" class="cta-email">steve@mainsail.group</a>
+    <a href="/cdn-cgi/l/email-protection#8cfff8e9fae9cce1ede5e2ffede5e0a2ebfee3f9fc" class="cta-email"><span class="__cf_email__" data-cfemail="1467607162715479757d7a67757d783a73667b6164">[email&#160;protected]</span></a>
     <div class="cta-note">All inquiries are confidential.</div>
   </div>
 </section>
@@ -995,12 +991,12 @@ footer {
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">&copy; 2026 Mainsail Ventures.  All rights reserved.</div>
-    <div class="footer-email"><a href="mailto:steve@mainsail.group">steve@mainsail.group</a></div>
+    <div class="footer-email"><a href="/cdn-cgi/l/email-protection#2457504152416449454d4a57454d480a43564b5154"><span class="__cf_email__" data-cfemail="b6c5c2d3c0d3f6dbd7dfd8c5d7dfda98d1c4d9c3c6">[email&#160;protected]</span></a></div>
   </div>
 </footer>
 
 <!-- ============ SCRIPTS ============ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Scroll reveal: start hidden, reveal on scroll
 document.querySelectorAll('.reveal').forEach(el => el.classList.add('hidden'));
 
@@ -1017,20 +1013,4 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // Nav scroll effect
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-</script>
-
-</body>
-</html>
+  nav.classList.toggle('scro
