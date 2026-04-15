@@ -14,20 +14,22 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --navy: #0B1D3A;
-  --navy-mid: #0F2847;
-  --navy-light: #153660;
-  --slate: #3A5A8C;
-  --sand: #E8DCC8;
-  --sand-light: #F2EDE3;
-  --cream: #FDFAF5;
-  --gold: #C4933F;
-  --gold-hover: #D4A54F;
-  --gold-dim: rgba(196, 147, 63, 0.15);
+  --navy: #071321;
+  --navy-mid: #0E2133;
+  --navy-light: #142434;
+  --navy-accent: #1B2C3E;
+  --slate: #2D4A66;
+  --sand: #E0D5C3;
+  --sand-light: #EDE8DF;
+  --cream: #F8F5F0;
+  --gold: #C9963E;
+  --gold-hover: #D9A84E;
+  --gold-dim: rgba(201, 150, 62, 0.15);
+  --silver: #B8C0CA;
   --white: #FFFFFF;
   --text-body: #4A4A5A;
   --text-light: #7A7A8A;
-  --divider: rgba(11, 29, 58, 0.07);
+  --divider: rgba(7, 19, 33, 0.07);
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -47,15 +49,11 @@ h1, h2, h3, h4, h5 {
 
 /* ===================== SCROLL REVEAL ===================== */
 .reveal {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1; transform: translateY(0);
   transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.reveal.hidden {
-  opacity: 0;
-  transform: translateY(40px);
-}
+.reveal.hidden { opacity: 0; transform: translateY(40px); }
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
@@ -66,28 +64,30 @@ nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 56px; height: 72px;
-  background: rgba(11, 29, 58, 0.97);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(196, 147, 63, 0.1);
+  background: rgba(7, 19, 33, 0.97);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(201, 150, 62, 0.1);
   transition: all 0.3s;
 }
-nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
+nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
 
 .nav-logo {
-  display: flex; align-items: center; gap: 16px;
+  display: flex; align-items: center; gap: 14px;
   text-decoration: none; color: var(--white);
 }
-.nav-logo svg { width: 38px; height: 38px; flex-shrink: 0; }
-
+.nav-logo img {
+  width: 44px; height: 44px; border-radius: 50%;
+  object-fit: cover;
+}
 .nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
 .nav-wordmark .name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 20px; font-weight: 600; letter-spacing: 1.5px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase;
 }
 .nav-wordmark .sub {
   font-size: 9px; font-weight: 600; letter-spacing: 4px;
-  color: var(--gold); text-transform: uppercase; margin-top: 2px;
+  color: var(--gold); text-transform: uppercase; margin-top: 3px;
 }
 
 .nav-links { display: flex; gap: 40px; list-style: none; }
@@ -98,15 +98,14 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
 }
 .nav-links a::after {
   content: ''; position: absolute; bottom: -4px; left: 0;
-  width: 0; height: 1px; background: var(--gold);
-  transition: width 0.3s;
+  width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
 }
 .nav-links a:hover { color: var(--white); }
 .nav-links a:hover::after { width: 100%; }
 
 .nav-cta {
   display: inline-block; background: transparent;
-  border: 1px solid rgba(196, 147, 63, 0.5);
+  border: 1px solid rgba(201, 150, 62, 0.5);
   color: var(--gold); padding: 10px 28px;
   font-size: 12px; font-weight: 600;
   letter-spacing: 1.5px; text-transform: uppercase;
@@ -131,19 +130,15 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
 .hero-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 70% 50% at 65% 45%, rgba(21, 54, 96, 0.7), transparent 70%),
-    radial-gradient(ellipse 40% 40% at 15% 85%, rgba(196, 147, 63, 0.06), transparent);
+    radial-gradient(ellipse 70% 50% at 65% 45%, rgba(20, 36, 52, 0.8), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 15% 85%, rgba(201, 150, 62, 0.04), transparent);
 }
-.hero-grid {
-  position: absolute; inset: 0; opacity: 0.03;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
-  background-size: 72px 72px;
-}
-.hero-ornament {
-  position: absolute; right: 6%; top: 50%;
-  transform: translateY(-50%); opacity: 0.04;
+.hero-glow {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(20, 36, 52, 0.6), transparent 70%);
+  pointer-events: none;
 }
 .hero-content {
   position: relative; z-index: 2;
@@ -168,7 +163,7 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
 
 .hero-desc {
   font-size: 17px; line-height: 1.85;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.5);
   max-width: 540px; margin-bottom: 48px;
   opacity: 0; animation: fadeUp 0.8s ease-out 0.7s forwards;
 }
@@ -185,26 +180,37 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
 }
 .btn-gold:hover {
   background: var(--gold-hover); transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(196, 147, 63, 0.25);
+  box-shadow: 0 8px 24px rgba(201, 150, 62, 0.25);
 }
 .btn-outline {
-  display: inline-block; background: transparent; color: rgba(255,255,255,0.8);
+  display: inline-block; background: transparent; color: rgba(255,255,255,0.7);
   padding: 16px 40px; font-size: 13px; font-weight: 600;
   letter-spacing: 1.2px; text-transform: uppercase;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.15);
   text-decoration: none; transition: all 0.35s;
 }
-.btn-outline:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
+.btn-outline:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+
+/* Hero logo mark */
+.hero-logo {
+  position: absolute; right: 8%; top: 50%;
+  transform: translateY(-50%);
+  width: 320px; height: 320px;
+  opacity: 0.12;
+  border-radius: 50%;
+  object-fit: cover;
+  pointer-events: none;
+}
 
 /* ===================== STATS BAR ===================== */
 .stats {
   background: var(--navy-mid);
   display: grid; grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid rgba(196, 147, 63, 0.12);
+  border-top: 1px solid rgba(201, 150, 62, 0.1);
 }
 .stat {
   padding: 44px 32px; text-align: center;
-  border-right: 1px solid rgba(255,255,255,0.04);
+  border-right: 1px solid rgba(255,255,255,0.03);
   transition: background 0.3s;
 }
 .stat:last-child { border-right: none; }
@@ -214,7 +220,7 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
   font-size: 40px; font-weight: 600; color: var(--gold); margin-bottom: 8px;
 }
 .stat-label {
-  font-size: 11px; color: rgba(255,255,255,0.4);
+  font-size: 11px; color: rgba(255,255,255,0.35);
   letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
 }
 
@@ -253,8 +259,8 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
   width: 0; height: 2px; background: var(--gold); transition: width 0.35s;
 }
 .value-card:hover {
-  border-color: rgba(196, 147, 63, 0.2);
-  box-shadow: 0 8px 32px rgba(11, 29, 58, 0.06); transform: translateY(-3px);
+  border-color: rgba(201, 150, 62, 0.2);
+  box-shadow: 0 8px 32px rgba(7, 19, 33, 0.06); transform: translateY(-3px);
 }
 .value-card:hover::before { width: 100%; }
 .value-icon {
@@ -274,23 +280,23 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
 .approach::before {
   content: ''; position: absolute;
   top: 0; right: 0; bottom: 0; width: 40%;
-  background: radial-gradient(ellipse at 80% 50%, rgba(21, 54, 96, 0.5), transparent 70%);
+  background: radial-gradient(ellipse at 80% 50%, rgba(20, 36, 52, 0.6), transparent 70%);
 }
 .approach .section-header h2 { color: var(--white); }
-.approach .section-header .lead { color: rgba(255,255,255,0.5); }
+.approach .section-header .lead { color: rgba(255,255,255,0.45); }
 .steps {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 0; margin-top: 8px; position: relative; z-index: 1;
 }
-.step { padding: 48px 40px; border-right: 1px solid rgba(255,255,255,0.05); }
+.step { padding: 48px 40px; border-right: 1px solid rgba(255,255,255,0.04); }
 .step:last-child { border-right: none; }
 .step-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 72px; font-weight: 400;
-  color: rgba(196, 147, 63, 0.15); line-height: 1; margin-bottom: 20px;
+  color: rgba(201, 150, 62, 0.12); line-height: 1; margin-bottom: 20px;
 }
 .step h3 { font-size: 26px; color: var(--white); margin-bottom: 16px; font-weight: 500; }
-.step p { font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.45); }
+.step p { font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.4); }
 
 /* ===================== CRITERIA ===================== */
 .criteria { padding: 120px 56px; background: var(--sand-light); }
@@ -300,7 +306,7 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
 }
 .criteria-list { list-style: none; }
 .criteria-item {
-  padding: 28px 0; border-bottom: 1px solid rgba(11, 29, 58, 0.06);
+  padding: 28px 0; border-bottom: 1px solid rgba(7, 19, 33, 0.06);
   display: flex; gap: 20px; align-items: flex-start;
 }
 .criteria-item:first-child { padding-top: 0; }
@@ -322,7 +328,7 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
   gap: 56px; align-items: start; margin-top: 8px;
 }
 .founder-photo-wrap {
-  border: 1px solid rgba(196, 147, 63, 0.3);
+  border: 1px solid rgba(201, 150, 62, 0.3);
   padding: 16px; background: var(--white);
 }
 .founder-photo {
@@ -375,7 +381,7 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
 }
 .cta::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(21, 54, 96, 0.4), transparent);
+  background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(20, 36, 52, 0.5), transparent);
 }
 .cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
 .cta .section-label { justify-content: center; }
@@ -385,7 +391,7 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
   margin-bottom: 20px; font-weight: 500;
 }
 .cta p {
-  font-size: 17px; color: rgba(255,255,255,0.5);
+  font-size: 17px; color: rgba(255,255,255,0.45);
   line-height: 1.85; margin-bottom: 40px;
 }
 .cta-email {
@@ -395,32 +401,33 @@ nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
 }
 .cta-email:hover {
   background: var(--gold-hover); transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(196, 147, 63, 0.3);
+  box-shadow: 0 8px 32px rgba(201, 150, 62, 0.3);
 }
-.cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.3); }
+.cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.25); }
 
 /* ===================== FOOTER ===================== */
 footer {
   background: var(--navy); padding: 48px 56px;
-  border-top: 1px solid rgba(196, 147, 63, 0.08);
+  border-top: 1px solid rgba(201, 150, 62, 0.06);
 }
 .footer-top {
   display: flex; justify-content: space-between;
   align-items: center; flex-wrap: wrap; gap: 24px;
-  padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.04);
+  padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 .footer-logo {
   display: flex; align-items: center; gap: 12px;
   text-decoration: none; color: var(--white);
 }
-.footer-logo svg { width: 30px; height: 30px; }
+.footer-logo img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
 .footer-logo .name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px; font-weight: 600; letter-spacing: 1px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase;
 }
 .footer-nav { display: flex; gap: 32px; list-style: none; }
 .footer-nav a {
-  color: rgba(255,255,255,0.4); text-decoration: none;
+  color: rgba(255,255,255,0.35); text-decoration: none;
   font-size: 13px; font-weight: 500; transition: color 0.3s;
 }
 .footer-nav a:hover { color: var(--gold); }
@@ -428,9 +435,9 @@ footer {
   padding-top: 28px; display: flex; justify-content: space-between;
   align-items: center; flex-wrap: wrap; gap: 12px;
 }
-.footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.15); }
 .footer-email a {
-  font-size: 13px; color: rgba(255,255,255,0.35);
+  font-size: 13px; color: rgba(255,255,255,0.3);
   text-decoration: none; transition: color 0.3s;
 }
 .footer-email a:hover { color: var(--gold); }
@@ -448,7 +455,7 @@ footer {
   .why-founder { grid-template-columns: 1fr; gap: 40px; }
   .founder-photo { max-width: 260px; }
   .why-points { grid-template-columns: 1fr; gap: 32px; }
-  .hero-ornament { display: none; }
+  .hero-logo { display: none; }
 }
 @media (max-width: 768px) {
   nav { padding: 0 24px; }
@@ -464,7 +471,7 @@ footer {
   .about, .approach, .criteria, .why, .cta { padding: 80px 24px; }
   .values-grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
-  .step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 36px 0; }
+  .step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.04); padding: 36px 0; }
   .why-points { grid-template-columns: 1fr; }
   footer { padding: 36px 24px; }
   .footer-top { flex-direction: column; align-items: flex-start; }
@@ -477,17 +484,9 @@ footer {
 <!-- ============ NAVIGATION ============ -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="36" cy="36" r="32" stroke="#fff" stroke-width="1.5" fill="none"/>
-      <circle cx="36" cy="36" r="25" stroke="#fff" stroke-width="0.5" fill="none" opacity="0.4"/>
-      <path d="M22 52 L28 18 L36 38 L44 18 L50 52" stroke="#fff" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="36" cy="2" r="2.5" fill="#C4933F"/>
-      <circle cx="36" cy="70" r="2.5" fill="#C4933F"/>
-      <circle cx="2" cy="36" r="2.5" fill="#C4933F"/>
-      <circle cx="70" cy="36" r="2.5" fill="#C4933F"/>
-    </svg>
+    <img src="logo.png" alt="Mainsail Ventures">
     <div class="nav-wordmark">
-      <span class="name">MAINSAIL</span>
+      <span class="name">Mainsail</span>
       <span class="sub">Ventures</span>
     </div>
   </a>
@@ -506,16 +505,8 @@ footer {
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <svg class="hero-ornament" width="480" height="480" viewBox="0 0 400 400" fill="none">
-    <circle cx="200" cy="200" r="190" stroke="white" stroke-width="0.4"/>
-    <circle cx="200" cy="200" r="150" stroke="white" stroke-width="0.25"/>
-    <circle cx="200" cy="200" r="110" stroke="white" stroke-width="0.25"/>
-    <path d="M200 10 L200 390" stroke="white" stroke-width="0.25"/>
-    <path d="M10 200 L390 200" stroke="white" stroke-width="0.25"/>
-    <path d="M200 50 L212 200 L200 350 L188 200 Z" stroke="white" stroke-width="0.4" fill="white" fill-opacity="0.03"/>
-    <path d="M50 200 L200 188 L350 200 L200 212 Z" stroke="white" stroke-width="0.3" fill="white" fill-opacity="0.02"/>
-  </svg>
+  <div class="hero-glow"></div>
+  <img src="logo.png" alt="" class="hero-logo">
   <div class="hero-content">
     <span class="hero-label">Business Acquisition &amp; Operations</span>
     <h1>Your Business Deserves a <em>Thoughtful</em> Transition</h1>
@@ -549,22 +540,22 @@ footer {
     </div>
     <div class="values-grid">
       <div class="value-card reveal reveal-delay-1">
-        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><path d="M12 2L12 22M12 2L20 10M12 2L4 10"/></svg></div>
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9963E" stroke-width="1.5"><path d="M12 2L12 22M12 2L20 10M12 2L4 10"/></svg></div>
         <h4>Legacy First</h4>
         <p>Your business represents decades of work.  We honor that by preserving your team, your customers, and your reputation.</p>
       </div>
       <div class="value-card reveal reveal-delay-2">
-        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9963E" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
         <h4>Hands-On Ownership</h4>
         <p>We do not delegate from a distance.  Our team gets involved in day-to-day operations alongside your people.</p>
       </div>
       <div class="value-card reveal reveal-delay-3">
-        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9963E" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
         <h4>People Centered</h4>
         <p>Employees are not line items.  We invest in the people who built the business, creating growth paths and stability.</p>
       </div>
       <div class="value-card reveal reveal-delay-4">
-        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C4933F" stroke-width="1.5"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div>
+        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9963E" stroke-width="1.5"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div>
         <h4>Steady Growth</h4>
         <p>We pursue sustainable, disciplined growth through operational improvements, not aggressive cost-cutting.</p>
       </div>
@@ -588,7 +579,7 @@ footer {
     <div class="step reveal reveal-delay-2">
       <div class="step-num">02</div>
       <h3>Evaluation</h3>
-      <p>If there is a mutual fit, we conduct a thorough review of financials, operations, and culture.  We move efficiently and keep disruption to an absolute minimum.</p>
+      <p>If there is a mutual fit, we conduct a thorough but respectful review of financials, operations, and culture.  We move efficiently and keep disruption to an absolute minimum.</p>
     </div>
     <div class="step reveal reveal-delay-3">
       <div class="step-num">03</div>
@@ -608,23 +599,23 @@ footer {
   <div class="criteria-layout">
     <ul class="criteria-list">
       <li class="criteria-item reveal">
-        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C9963E" stroke-width="2" stroke-linecap="round"/></svg></div>
         <div><h4>Established Track Record</h4><p>Businesses operating profitably for 10 or more years with a strong local or regional reputation.</p></div>
       </li>
       <li class="criteria-item reveal reveal-delay-1">
-        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C9963E" stroke-width="2" stroke-linecap="round"/></svg></div>
         <div><h4>Essential Services</h4><p>Industries where demand is steady and recurring, including fire suppression, safety, facilities, and building services.</p></div>
       </li>
       <li class="criteria-item reveal reveal-delay-2">
-        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C9963E" stroke-width="2" stroke-linecap="round"/></svg></div>
         <div><h4>Revenue Range</h4><p>Annual revenues between $1M and $10M with healthy margins and consistent cash flow.</p></div>
       </li>
       <li class="criteria-item reveal reveal-delay-3">
-        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C9963E" stroke-width="2" stroke-linecap="round"/></svg></div>
         <div><h4>Strong Team in Place</h4><p>Businesses where key employees are willing to stay through and beyond the ownership transition.</p></div>
       </li>
       <li class="criteria-item reveal reveal-delay-4">
-        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C4933F" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C9963E" stroke-width="2" stroke-linecap="round"/></svg></div>
         <div><h4>Owner Seeking Succession</h4><p>Founders ready for retirement, a new chapter, or simply looking for the right buyer who will take care of what they built.</p></div>
       </li>
     </ul>
@@ -648,7 +639,7 @@ footer {
       <div class="founder-name">Steven</div>
       <div class="founder-title">Founder &amp; Principal</div>
       <ul class="founder-credentials">
-        <li>MBA, University of Maryland</li>
+        <li>EMBA, University of Maryland</li>
         <li>B.A., Michigan State University</li>
         <li>15+ years in operations &amp; HR leadership</li>
         <li>Multi-entity integration expertise</li>
@@ -692,15 +683,7 @@ footer {
 <footer>
   <div class="footer-top">
     <a href="#top" class="footer-logo">
-      <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="36" cy="36" r="32" stroke="#fff" stroke-width="1.2" fill="none" opacity="0.5"/>
-        <circle cx="36" cy="36" r="25" stroke="#fff" stroke-width="0.4" fill="none" opacity="0.3"/>
-        <path d="M22 52 L28 18 L36 38 L44 18 L50 52" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-        <circle cx="36" cy="2" r="2" fill="#C4933F" opacity="0.5"/>
-        <circle cx="36" cy="70" r="2" fill="#C4933F" opacity="0.5"/>
-        <circle cx="2" cy="36" r="2" fill="#C4933F" opacity="0.5"/>
-        <circle cx="70" cy="36" r="2" fill="#C4933F" opacity="0.5"/>
-      </svg>
+      <img src="logo.png" alt="Mainsail Ventures">
       <span class="name">Mainsail Ventures</span>
     </a>
     <ul class="footer-nav">
@@ -718,7 +701,6 @@ footer {
 
 <!-- ============ SCRIPTS ============ -->
 <script>
-// Build email via JS to prevent Cloudflare email obfuscation
 (function() {
   var u = 'steve';
   var d = 'mainsail.group';
@@ -730,41 +712,27 @@ footer {
   if (b) { b.href = ml; b.textContent = full; }
 })();
 
-// Scroll reveal
-document.querySelectorAll('.reveal').forEach(function(el) {
-  el.classList.add('hidden');
-});
+document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('hidden'); });
 
 var observer = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.remove('hidden');
-    }
+    if (entry.isIntersecting) { entry.target.classList.remove('hidden'); }
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -10px 0px' });
 
-document.querySelectorAll('.reveal').forEach(function(el) {
-  observer.observe(el);
-});
+document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
 
-// Nav scroll effect
 var navEl = document.getElementById('nav');
 window.addEventListener('scroll', function() {
-  if (window.scrollY > 60) {
-    navEl.classList.add('scrolled');
-  } else {
-    navEl.classList.remove('scrolled');
-  }
+  if (window.scrollY > 60) { navEl.classList.add('scrolled'); }
+  else { navEl.classList.remove('scrolled'); }
 });
 
-// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {
     e.preventDefault();
     var target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
 </script>
