@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mainsail Tools</title>
+  <link rel="stylesheet" href="shared/styles.css">
+  <style>
+    .hero {
+      padding: 64px 0 48px 0;
+      border-bottom: 1px solid var(--slate-200);
+      margin-bottom: 48px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--brass);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.25rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      margin-bottom: 16px;
+      max-width: 800px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--navy-light);
+    }
+
+    .hero-lede {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      line-height: 1.5;
+      color: var(--slate-700);
+      font-weight: 400;
+      font-style: italic;
+      max-width: 640px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      border-top: 2px solid var(--navy);
+    }
+
+    .tool-card {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 32px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--slate-200);
+      align-items: start;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s, padding-left 0.15s;
+    }
+
+    .tool-card:hover {
+      padding-left: 12px;
+    }
+
+    .tool-card:hover .tool-arrow {
+      transform: translateX(8px);
+    }
+
+    @media (max-width: 700px) {
+      .tool-card {
+        grid-template-columns: 60px 1fr;
+        gap: 16px;
+      }
+      .tool-arrow {
+        display: none;
+      }
+    }
+
+    .tool-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--brass);
+      font-feature-settings: 'tnum';
+      line-height: 1;
+      padding-top: 4px;
+    }
+
+    .tool-content {
+      flex: 1;
+    }
+
+    .tool-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .tool-tagline {
+      font-size: 1rem;
+      color: var(--slate-700);
+      margin-bottom: 8px;
+    }
+
+    .tool-meta {
+      font-size: 0.75rem;
+      color: var(--slate-500);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .tool-meta-status {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid #bbf7d0;
+      margin-left: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .tool-meta-status.draft {
+      background: var(--slate-50);
+      color: var(--slate-500);
+      border-color: var(--slate-200);
+    }
+
+    .tool-arrow {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--slate-400);
+      align-self: center;
+      transition: transform 0.15s;
+    }
+
+    .ext-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: var(--navy);
+      text-decoration: underline;
+      text-decoration-color: var(--brass);
+    }
+
+    .info-box {
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-left: 4px solid var(--navy);
+      padding: 24px 28px;
+      margin: 48px 0;
+    }
+
+    .info-box-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .info-box h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .info-box p {
+      margin: 0;
+      color: var(--slate-700);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="masthead">
+      <div class="masthead-brand">
+        <span class="masthead-brand-name">Mainsail</span>
+        <span class="masthead-brand-tag">Tools</span>
+      </div>
+      <nav class="masthead-nav">
+        <a href="https://mainsail.group">Main site</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-eyebrow">Operating workbench</div>
+      <h1 class="hero-title">Tools for the long search, <em>and the longer hold.</em></h1>
+      <p class="hero-lede">
+        A small set of working tools to compress research, screening, and prep so you spend more hours where it matters.  Built for one operator, not a fund.
+      </p>
+    </section>
+
+    <section class="tools-grid">
+
+      <a href="signal-score/" class="tool-card">
+        <div class="tool-number">01</div>
+        <div class="tool-content">
+          <div class="tool-name">Signal Score Calculator</div>
+          <div class="tool-tagline">Score a target against the Mainsail ICP rubric.  Forces consistent screening discipline.</div>
+          <div class="tool-meta">
+            Static tool
+            <span class="tool-meta-status">Ready</span>
+          </div>
+        </div>
+        <div class="tool-arrow">&rarr;</div>
+      </a>
+
+      <a href="prep-packet/" class="tool-card">
+        <div class="tool-number">02</div>
+        <div class="tool-content">
+          <div class="tool-name">Pre-Conversation Prep Packet</div>
+          <div class="tool-tagline">Generates a 90-second prep doc before any owner conversation, calibrated to relationship stage.</div>
+          <div class="tool-meta">
+            AI tool
+            <span class="tool-meta-status">Ready</span>
+          </div>
+        </div>
+        <div class="tool-arrow">&rarr;</div>
+      </a>
+
+      <a href="deal-memo/" class="tool-card">
+        <div class="tool-number">03</div>
+        <div class="tool-content">
+          <div class="tool-name">Deal Screening Memo Engine</div>
+          <div class="tool-tagline">Drafts a structured pass / pursue / watch memo for a target.  Builds your decision log over time.</div>
+          <div class="tool-meta">
+            AI tool
+            <span class="tool-meta-status">Ready</span>
+          </div>
+        </div>
+        <div class="tool-arrow">&rarr;</div>
+      </a>
+
+      <a href="target-research/" class="tool-card">
+        <div class="tool-number">04</div>
+        <div class="tool-content">
+          <div class="tool-name">Target Research Brief</div>
+          <div class="tool-tagline">A worksheet that points you at the right public records and asks the right questions for an electrical contractor.</div>
+          <div class="tool-meta">
+            AI tool
+            <span class="tool-meta-status">Ready</span>
+          </div>
+        </div>
+        <div class="tool-arrow">&rarr;</div>
+      </a>
+
+      <a id="permit-link" href="#" class="tool-card">
+        <div class="tool-number">05</div>
+        <div class="tool-content">
+          <div class="tool-name">Permit Watch Digest</div>
+          <div class="tool-tagline">Weekly view of new commercial electrical permits in Montgomery County.  Tells you who is winning work.</div>
+          <div class="tool-meta">
+            Worker tool
+            <span class="tool-meta-status">Ready</span>
+          </div>
+        </div>
+        <div class="tool-arrow">&rarr;</div>
+      </a>
+
+    </section>
+
+    <div class="info-box">
+      <div class="info-box-label">Note</div>
+      <h3>The CRM lives in Google Sheets, by design.</h3>
+      <p>The BAIL CRM is a separate Google Sheet with an Apps Script that emails a weekly digest.  Open the doc setup guide for the link to the sheet template.</p>
+    </div>
+
+    <footer class="footer">
+      Mainsail Ventures &middot; Gaithersburg, MD &middot;
+      <a href="https://mainsail.group">mainsail.group</a>
+    </footer>
+  </div>
+
+  <script src="shared/config.js"></script>
+  <script>
+    // Wire up the permit watch link to the configured Worker URL
+    const permitLink = document.getElementById('permit-link');
+    const url = (window.MAINSAIL_CONFIG && window.MAINSAIL_CONFIG.PERMIT_WATCH_URL) || '';
+    if (url && !url.includes('YOUR-SUBDOMAIN')) {
+      permitLink.href = url;
+      permitLink.target = '_blank';
+      permitLink.rel = 'noopener';
+    } else {
+      permitLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Permit Watch URL not yet configured.  Edit shared/config.js with your deployed Worker URL.');
+      });
+    }
+  </script>
+</body>
+</html>
