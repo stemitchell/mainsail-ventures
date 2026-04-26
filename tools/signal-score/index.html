@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal Score Calculator | Mainsail Tools</title>
+  <link rel="stylesheet" href="../shared/styles.css">
+  <style>
+    .slider-row {
+      display: grid;
+      grid-template-columns: 1fr 60px;
+      gap: 12px;
+      align-items: center;
+    }
+    .slider-value {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--navy);
+      font-weight: 600;
+      text-align: center;
+      background: var(--slate-50);
+      padding: 4px 8px;
+      border: 1px solid var(--slate-200);
+    }
+    .anchor-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--slate-500);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      width: 100%;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 4px;
+      background: var(--slate-200);
+      border-radius: 0;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--navy);
+      border-radius: 50%;
+      margin-top: -7px;
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-track {
+      height: 4px;
+      background: var(--slate-200);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: var(--navy);
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+    }
+    .pass {
+      color: var(--success);
+    }
+    .fail {
+      color: var(--error);
+    }
+    .gates-section {
+      margin-bottom: 24px;
+      padding: 20px;
+      background: var(--slate-50);
+      border-left: 3px solid var(--brass);
+    }
+    .gate-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .gate-row label {
+      margin-bottom: 0;
+      flex: 1;
+      font-weight: 400;
+      color: var(--charcoal);
+    }
+    .gate-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--navy);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-narrow">
+    <header class="masthead">
+      <div class="masthead-brand">
+        <span class="masthead-brand-name">Mainsail</span>
+        <span class="masthead-brand-tag">Tools / Signal Score</span>
+      </div>
+      <nav class="masthead-nav">
+        <a href="../">All tools</a>
+      </nav>
+    </header>
+
+    <div class="page-header">
+      <div class="page-eyebrow">01 &middot; Static tool</div>
+      <h1 class="page-title">Signal Score Calculator</h1>
+      <p class="page-lede">Score a target against the Mainsail ICP.  Same rubric every time, every target.</p>
+    </div>
+
+    <form id="score-form">
+
+      <div class="form-section">
+        <div class="form-section-header">Target identification</div>
+        <div class="field">
+          <label for="company">Company name</label>
+          <input type="text" id="company" placeholder="e.g., Crestline Electrical Services">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="location">Location</label>
+            <input type="text" id="location" placeholder="e.g., Gaithersburg, MD">
+          </div>
+          <div class="field">
+            <label for="source">How sourced</label>
+            <input type="text" id="source" placeholder="e.g., broker, referral, drive-by">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-header">Hard gates (must clear all)</div>
+        <div class="gates-section">
+          <div class="gate-row">
+            <input type="checkbox" id="gate-naics">
+            <label for="gate-naics">Primarily NAICS 238210 (commercial electrical contractor)</label>
+          </div>
+          <div class="gate-row">
+            <input type="checkbox" id="gate-geo">
+            <label for="gate-geo">Located in Montgomery, Frederick, Howard, or Prince George's County</label>
+          </div>
+          <div class="gate-row">
+            <input type="checkbox" id="gate-revenue">
+            <label for="gate-revenue">Estimated revenue $1M to $25M</label>
+          </div>
+          <div class="gate-row">
+            <input type="checkbox" id="gate-citizenship">
+            <label for="gate-citizenship">Owner ownership structure compatible with SBA citizenship rule (March 2026)</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-header">Scoring dimensions (1 = poor, 5 = excellent)</div>
+
+        <div class="field">
+          <label for="s-sde">SDE within $500K to $900K target band</label>
+          <div class="slider-row">
+            <input type="range" id="s-sde" min="1" max="5" value="3">
+            <div class="slider-value" id="s-sde-val">3</div>
+          </div>
+          <div class="anchor-row">
+            <span>1: out of band</span>
+            <span>5: dead center</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="s-succession">Owner succession signals</label>
+          <div class="slider-row">
+            <input type="range" id="s-succession" min="1" max="5" value="3">
+            <div class="slider-value" id="s-succession-val">3</div>
+          </div>
+          <div class="anchor-row">
+            <span>1: not exiting</span>
+            <span>5: actively seeking buyer</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="s-license">Master Electrician depth on staff</label>
+          <div class="slider-row">
+            <input type="range" id="s-license" min="1" max="5" value="3">
+            <div class="slider-value" id="s-license-val">3</div>
+          </div>
+          <div class="anchor-row">
+            <span>1: only owner holds it</span>
+            <span>5: multiple holders, none leaving</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="s-customer">Customer concentration risk (5 = diversified)</label>
+          <div class="slider-row">
+            <input type="range" id="s-customer" min="1" max="5" value="3">
+            <div class="slider-value" id="s-customer-val">3</div>
+          </div>
+          <div class="anchor-row">
+            <span>1: one customer over 40%</span>
+            <span>5: no customer over 15%</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="s-bonding">Bonding capacity</label>
+          <div class="slider-row">
+            <input type="range" id="s-bonding" min="1" max="5" value="3">
+            <div class="slider-value" id="s-bonding-val">3</div>
+          </div>
+          <div class="anchor-row">
+            <span>1: none / rejected</span>
+            <span>5: $5M+ single, $20M+ aggregate</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="s-growth">Exposure to growth verticals (EV / BEPS / life sciences)</label>
+          <div class="slider-row">
+            <input type="range" id="s-growth" min="1" max="5" value="3">
+            <div class="slider-value" id="s-growth-val">3</div>
+          </div>
+          <div class="anchor-row">
+            <span>1: none</span>
+            <span>5: existing book of business</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="s-team">Bench strength below the owner</label>
+          <div class="slider-row">
+            <input type="range" id="s-team" min="1" max="5" value="3">
+            <div class="slider-value" id="s-team-val">3</div>
+          </div>
+          <div class="anchor-row">
+            <span>1: owner does everything</span>
+            <span>5: clear ops manager and supers</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="s-ar">AR / cash quality</label>
+          <div class="slider-row">
+            <input type="range" id="s-ar" min="1" max="5" value="3">
+            <div class="slider-value" id="s-ar-val">3</div>
+          </div>
+          <div class="anchor-row">
+            <span>1: long DSO, retention issues</span>
+            <span>5: clean and predictable</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="s-fit">Cultural and geographic fit with Steve as buyer</label>
+          <div class="slider-row">
+            <input type="range" id="s-fit" min="1" max="5" value="3">
+            <div class="slider-value" id="s-fit-val">3</div>
+          </div>
+          <div class="anchor-row">
+            <span>1: poor fit</span>
+            <span>5: ideal Mainsail-style operation</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="s-deal">Deal feasibility (asking price vs SDE band)</label>
+          <div class="slider-row">
+            <input type="range" id="s-deal" min="1" max="5" value="3">
+            <div class="slider-value" id="s-deal-val">3</div>
+          </div>
+          <div class="anchor-row">
+            <span>1: way over 4x</span>
+            <span>5: well under 4x with room</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-header">Notes</div>
+        <div class="field">
+          <textarea id="notes" placeholder="Anything else worth recording, briefly."></textarea>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button type="button" id="score-btn">Score this target</button>
+        <button type="button" class="button-secondary" id="reset-btn">Reset</button>
+      </div>
+
+    </form>
+
+    <div class="result-panel" id="result">
+      <div id="result-body"></div>
+      <div class="button-row" style="margin-top:24px;">
+        <button type="button" class="button-secondary" id="copy-btn">Copy</button>
+        <button type="button" class="button-secondary" onclick="window.print()">Print</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Mainsail Ventures &middot; Built for Steve Mitchell
+    </footer>
+  </div>
+
+  <script>
+    // Live update slider values
+    document.querySelectorAll('input[type="range"]').forEach((slider) => {
+      const valEl = document.getElementById(slider.id + '-val');
+      slider.addEventListener('input', () => {
+        valEl.textContent = slider.value;
+      });
+    });
+
+    // Reset
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      document.getElementById('score-form').reset();
+      document.querySelectorAll('input[type="range"]').forEach((s) => {
+        s.value = 3;
+        document.getElementById(s.id + '-val').textContent = '3';
+      });
+      document.getElementById('result').classList.remove('visible');
+    });
+
+    // Scoring weights (sum = 100)
+    const WEIGHTS = {
+      's-sde':        14,
+      's-succession': 14,
+      's-license':    13,
+      's-customer':   12,
+      's-bonding':     8,
+      's-growth':      8,
+      's-team':       10,
+      's-ar':          8,
+      's-fit':         7,
+      's-deal':        6,
+    };
+    const LABELS = {
+      's-sde': 'SDE band fit',
+      's-succession': 'Owner succession signals',
+      's-license': 'Master Electrician depth',
+      's-customer': 'Customer concentration',
+      's-bonding': 'Bonding capacity',
+      's-growth': 'Growth verticals',
+      's-team': 'Bench strength',
+      's-ar': 'AR / cash quality',
+      's-fit': 'Cultural and geographic fit',
+      's-deal': 'Deal feasibility',
+    };
+
+    function tier(pct) {
+      if (pct >= 80) return { label: 'Pursue actively', tone: 'pass', detail: 'High-conviction target.  Move toward LOI conversations.' };
+      if (pct >= 65) return { label: 'Pursue', tone: 'pass', detail: 'Worth the meeting.  Confirm the gaps on the lower-scoring dimensions before committing time.' };
+      if (pct >= 50) return { label: 'Watch', tone: '', detail: 'Borderline.  Add to watch list, revisit if a key dimension improves.' };
+      return { label: 'Pass', tone: 'fail', detail: 'Too many weak dimensions.  Move on unless something changes materially.' };
+    }
+
+    document.getElementById('score-btn').addEventListener('click', () => {
+      const company = document.getElementById('company').value || '(unnamed target)';
+      const location = document.getElementById('location').value || '';
+      const source = document.getElementById('source').value || '';
+      const notes = document.getElementById('notes').value || '';
+
+      // Hard gates
+      const gates = {
+        'NAICS 238210': document.getElementById('gate-naics').checked,
+        'Geography': document.getElementById('gate-geo').checked,
+        'Revenue band': document.getElementById('gate-revenue').checked,
+        'SBA citizenship': document.getElementById('gate-citizenship').checked,
+      };
+      const gatesFailed = Object.entries(gates).filter(([k, v]) => !v).map(([k]) => k);
+
+      // Compute weighted score
+      let totalWeight = 0;
+      let weightedSum = 0;
+      const breakdown = [];
+      for (const [id, weight] of Object.entries(WEIGHTS)) {
+        const val = parseInt(document.getElementById(id).value, 10);
+        const contribution = (val / 5) * weight;
+        weightedSum += contribution;
+        totalWeight += weight;
+        breakdown.push({
+          label: LABELS[id],
+          value: val,
+          weight,
+          contribution: contribution.toFixed(1),
+        });
+      }
+      const pct = Math.round((weightedSum / totalWeight) * 100);
+      const t = tier(pct);
+
+      // Strongest and weakest dimensions
+      const sorted = [...breakdown].sort((a, b) => b.value - a.value);
+      const strengths = sorted.filter((d) => d.value >= 4).slice(0, 3);
+      const weaknesses = [...sorted].reverse().filter((d) => d.value <= 2).slice(0, 3);
+
+      // Render
+      const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+      let html = `
+        <div style="margin-bottom:20px;">
+          <div style="font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--slate-500); font-weight:600;">Signal Score</div>
+          <h1 style="margin-top:4px;">${escapeHtml(company)}</h1>
+          <div style="color:var(--slate-500); font-size:0.9rem;">${escapeHtml(location)}${source ? ' &middot; sourced via ' + escapeHtml(source) : ''} &middot; ${date}</div>
+        </div>
+
+        <div class="score-display">
+          <div>
+            <div class="score-label">Composite</div>
+            <div class="score-number">${pct}</div>
+          </div>
+          <div style="flex:1;">
+            <div class="score-label">Recommendation</div>
+            <div class="score-tier">${t.label}</div>
+            <div class="score-recommendation">${t.detail}</div>
+          </div>
+        </div>
+      `;
+
+      // Hard gates
+      html += `<h2>Hard gates</h2>`;
+      if (gatesFailed.length === 0) {
+        html += `<p class="pass"><strong>All four gates clear.</strong></p>`;
+      } else {
+        html += `<p class="fail"><strong>${gatesFailed.length} gate${gatesFailed.length > 1 ? 's' : ''} failed:</strong> ${gatesFailed.join(', ')}.  Target should likely pass regardless of composite score below.</p>`;
+      }
+
+      // Score breakdown
+      html += `<h2>Score breakdown</h2>`;
+      breakdown.forEach((d) => {
+        const widthPct = (d.value / 5) * 100;
+        html += `
+          <div class="score-bar-row">
+            <div class="score-bar-label">${d.label}</div>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:${widthPct}%;"></div></div>
+            <div class="score-bar-value">${d.value} / 5</div>
+          </div>
+        `;
+      });
+
+      // Strengths
+      if (strengths.length > 0) {
+        html += `<h2>Strengths</h2><ul>`;
+        strengths.forEach((s) => {
+          html += `<li><strong>${s.label}</strong> &middot; scored ${s.value} of 5</li>`;
+        });
+        html += `</ul>`;
+      }
+
+      // Weaknesses
+      if (weaknesses.length > 0) {
+        html += `<h2>Risks to confirm before committing more time</h2><ul>`;
+        weaknesses.forEach((w) => {
+          html += `<li><strong>${w.label}</strong> &middot; scored ${w.value} of 5.  This needs a clear answer before next step.</li>`;
+        });
+        html += `</ul>`;
+      }
+
+      // Notes
+      if (notes) {
+        html += `<h2>Notes</h2><p>${escapeHtml(notes).replace(/\n/g, '<br>')}</p>`;
+      }
+
+      // Decision suggestion
+      html += `<h2>Suggested next move</h2><p>`;
+      if (gatesFailed.length > 0) {
+        html += `Pass.  At least one hard gate failed and the gates are non-negotiable for SBA-financed deal structure.`;
+      } else if (pct >= 80) {
+        html += `Schedule the owner conversation now.  Bring research from the Target Research Brief tool and use the Pre-Conversation Prep tool before walking in.`;
+      } else if (pct >= 65) {
+        html += `Worth a 30-minute call to test the weak dimensions.  Use the Pre-Conversation Prep tool, focus questions on the lowest-scoring areas above.`;
+      } else if (pct >= 50) {
+        html += `Add to watch list.  Set a reminder to revisit in 90 days, or sooner if you learn the weak dimensions improved.`;
+      } else {
+        html += `Pass.  Composite score is too low and improving it would require multiple dimensions to change.  Move attention elsewhere.`;
+      }
+      html += `</p>`;
+
+      document.getElementById('result-body').innerHTML = html;
+      document.getElementById('result').classList.add('visible');
+      setTimeout(() => {
+        document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    });
+
+    // Copy
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      const text = document.getElementById('result-body').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-btn');
+        const orig = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => { btn.textContent = orig; }, 1500);
+      });
+    });
+
+    function escapeHtml(s) {
+      if (!s) return '';
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+  </script>
+</body>
+</html>
