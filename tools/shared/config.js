@@ -8,7 +8,7 @@ window.MAINSAIL_CONFIG = {
 
   // The hex string you generated with `openssl rand -hex 32` and set as the
   // SHARED_SECRET worker secret.  This must match exactly.
-  SHARED_SECRET: '182dd97eeaf407ab9f71b6114aab80dfdd6c4a11966d316e999433c915e7f7c7',
+  SHARED_SECRET: '249e65eb540f12c9985a95405a191ddf207f0f85eeb6a31783770ada3c61a83e',
 
   // Optional: for the permit-watch URL link on the landing page
   PERMIT_WATCH_URL: 'https://permit-watch.YOUR-SUBDOMAIN.workers.dev',
