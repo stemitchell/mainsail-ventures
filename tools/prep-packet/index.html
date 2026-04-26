@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pre-Conversation Prep | Mainsail Tools</title>
+  <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+  <div class="container-narrow">
+    <header class="masthead">
+      <div class="masthead-brand">
+        <span class="masthead-brand-name">Mainsail</span>
+        <span class="masthead-brand-tag">Tools / Prep Packet</span>
+      </div>
+      <nav class="masthead-nav">
+        <a href="../">All tools</a>
+      </nav>
+    </header>
+
+    <div class="page-header">
+      <div class="page-eyebrow">02 &middot; AI tool</div>
+      <h1 class="page-title">Pre-Conversation Prep Packet</h1>
+      <p class="page-lede">A 90-second prep doc before any owner conversation, calibrated to where you are in the relationship.</p>
+    </div>
+
+    <form id="prep-form">
+      <div class="form-section">
+        <div class="form-section-header">Who you are meeting</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="ownerName">Owner name</label>
+            <input type="text" id="ownerName" placeholder="e.g., Jim Reynolds">
+          </div>
+          <div class="field">
+            <label for="company">Company</label>
+            <input type="text" id="company" placeholder="e.g., Crestline Electrical">
+          </div>
+        </div>
+        <div class="field">
+          <label for="meetingType">Meeting type / stage</label>
+          <select id="meetingType">
+            <option value="">Choose one</option>
+            <option value="Cold first coffee, no prior contact">Cold first coffee, no prior contact</option>
+            <option value="First meeting via warm intro from a mutual contact">First meeting via warm intro</option>
+            <option value="Second meeting, exploratory but not yet on terms">Second meeting, exploratory but not yet on terms</option>
+            <option value="Post-CIM review, narrowing fit">Post-CIM review, narrowing fit</option>
+            <option value="Post-LOI, working through diligence questions">Post-LOI, working through diligence questions</option>
+            <option value="Site visit / job walk">Site visit / job walk</option>
+            <option value="Family member or co-owner conversation, not the principal">Family member / co-owner, not the principal</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-header">Context</div>
+        <div class="field">
+          <label for="whatYouKnow">What you already know</label>
+          <textarea id="whatYouKnow" rows="5" placeholder="Anything you know about the owner, the business, the family, prior conversations, or how this introduction came about."></textarea>
+          <div class="field-hint">More specific is better.  This drives the quality of the prep.</div>
+        </div>
+        <div class="field">
+          <label for="whatYouWantToLearn">What you want to learn from this conversation</label>
+          <textarea id="whatYouWantToLearn" rows="3" placeholder="Two or three specific things.  Skip the obvious."></textarea>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button type="button" id="generate-btn">Generate prep packet</button>
+      </div>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <span>Drafting your prep packet...</span>
+      </div>
+
+      <div class="error" id="error"></div>
+
+    </form>
+
+    <div class="result-panel" id="result">
+      <div id="result-body"></div>
+      <div class="button-row" style="margin-top:24px;">
+        <button type="button" class="button-secondary" id="copy-btn">Copy</button>
+        <button type="button" class="button-secondary" onclick="window.print()">Print</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Mainsail Ventures &middot; Built for Steve Mitchell
+    </footer>
+  </div>
+
+  <script src="../shared/config.js"></script>
+  <script src="../shared/helpers.js"></script>
+  <script>
+    const btn = document.getElementById('generate-btn');
+    const loading = document.getElementById('loading');
+    const error = document.getElementById('error');
+    const result = document.getElementById('result');
+    const resultBody = document.getElementById('result-body');
+
+    btn.addEventListener('click', async () => {
+      const payload = {
+        ownerName: document.getElementById('ownerName').value.trim(),
+        company: document.getElementById('company').value.trim(),
+        meetingType: document.getElementById('meetingType').value.trim(),
+        whatYouKnow: document.getElementById('whatYouKnow').value.trim(),
+        whatYouWantToLearn: document.getElementById('whatYouWantToLearn').value.trim(),
+      };
+
+      // Light validation
+      if (!payload.ownerName && !payload.company) {
+        error.textContent = 'Please fill in at least the owner name or the company.';
+        error.classList.add('visible');
+        return;
+      }
+
+      await handleAIToolSubmit({
+        buttonEl: btn,
+        loadingEl: loading,
+        errorEl: error,
+        resultEl: result,
+        resultBodyEl: resultBody,
+        endpoint: '/api/prep-packet',
+        payload,
+      });
+    });
+
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      copyResultToClipboard(resultBody, document.getElementById('copy-btn'));
+    });
+  </script>
+</body>
+</html>
