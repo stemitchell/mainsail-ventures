@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Screening Memo | Mainsail Tools</title>
+  <link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body>
+  <div class="container-narrow">
+    <header class="masthead">
+      <div class="masthead-brand">
+        <span class="masthead-brand-name">Mainsail</span>
+        <span class="masthead-brand-tag">Tools / Deal Memo</span>
+      </div>
+      <nav class="masthead-nav">
+        <a href="../">All tools</a>
+      </nav>
+    </header>
+
+    <div class="page-header">
+      <div class="page-eyebrow">03 &middot; AI tool</div>
+      <h1 class="page-title">Deal Screening Memo Engine</h1>
+      <p class="page-lede">A structured pass / pursue / watch memo for any target.  Build your decision log over time.</p>
+    </div>
+
+    <form id="memo-form">
+
+      <div class="form-section">
+        <div class="form-section-header">Identification</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="company">Company</label>
+            <input type="text" id="company" placeholder="e.g., Crestline Electrical">
+          </div>
+          <div class="field">
+            <label for="location">Location</label>
+            <input type="text" id="location" placeholder="e.g., Gaithersburg, MD">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-header">Financials and scale</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="estRevenue">Estimated revenue</label>
+            <input type="text" id="estRevenue" placeholder="e.g., $4.2M (last full year)">
+          </div>
+          <div class="field">
+            <label for="estSDE">Estimated SDE</label>
+            <input type="text" id="estSDE" placeholder="e.g., $750K">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="headcount">Headcount</label>
+            <input type="text" id="headcount" placeholder="e.g., 22 W2 + 3 1099">
+          </div>
+          <div class="field">
+            <label for="yearsInBusiness">Years in business</label>
+            <input type="text" id="yearsInBusiness" placeholder="e.g., 27">
+          </div>
+        </div>
+        <div class="field">
+          <label for="initialReadOnAskingPrice">Initial read on asking price</label>
+          <input type="text" id="initialReadOnAskingPrice" placeholder="e.g., $3.2M whispered, no formal listing">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-header">Operations and structure</div>
+        <div class="field">
+          <label for="ownerSituation">Owner situation</label>
+          <textarea id="ownerSituation" rows="3" placeholder="Age, succession plans, family in business, intent to stay or leave, what you have heard about motivation."></textarea>
+        </div>
+        <div class="field">
+          <label for="licenseDepth">Master Electrician info</label>
+          <textarea id="licenseDepth" rows="2" placeholder="Who holds the license, are they staying, are there backups."></textarea>
+        </div>
+        <div class="field">
+          <label for="customerMix">Customer mix</label>
+          <textarea id="customerMix" rows="2" placeholder="Top customers, % concentration if known, types (commercial / institutional / industrial / mixed)."></textarea>
+        </div>
+        <div class="field">
+          <label for="bondingCapacity">Bonding capacity</label>
+          <input type="text" id="bondingCapacity" placeholder="e.g., $2M single, $5M aggregate, or unknown">
+        </div>
+        <div class="field">
+          <label for="growthVerticals">Exposure to growth verticals (EV / BEPS / life sciences)</label>
+          <textarea id="growthVerticals" rows="2" placeholder="Any current work or relationships in these areas."></textarea>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-header">Sourcing context</div>
+        <div class="field">
+          <label for="sourceChannel">How you sourced this target</label>
+          <input type="text" id="sourceChannel" placeholder="e.g., broker referral, drive-by, Glen intro">
+        </div>
+        <div class="field">
+          <label for="notes">Other notes</label>
+          <textarea id="notes" rows="3" placeholder="Anything else worth recording."></textarea>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button type="button" id="generate-btn">Generate memo</button>
+      </div>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <span>Drafting your screening memo...</span>
+      </div>
+
+      <div class="error" id="error"></div>
+
+    </form>
+
+    <div class="result-panel" id="result">
+      <div id="result-body"></div>
+      <div class="button-row" style="margin-top:24px;">
+        <button type="button" class="button-secondary" id="copy-btn">Copy</button>
+        <button type="button" class="button-secondary" onclick="window.print()">Print</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Mainsail Ventures &middot; Built for Steve Mitchell
+    </footer>
+  </div>
+
+  <script src="../shared/config.js"></script>
+  <script src="../shared/helpers.js"></script>
+  <script>
+    const btn = document.getElementById('generate-btn');
+    const loading = document.getElementById('loading');
+    const error = document.getElementById('error');
+    const result = document.getElementById('result');
+    const resultBody = document.getElementById('result-body');
+
+    btn.addEventListener('click', async () => {
+      const payload = {};
+      ['company', 'location', 'estRevenue', 'estSDE', 'headcount', 'yearsInBusiness',
+       'ownerSituation', 'licenseDepth', 'customerMix', 'bondingCapacity',
+       'growthVerticals', 'sourceChannel', 'initialReadOnAskingPrice', 'notes'].forEach((id) => {
+        payload[id] = document.getElementById(id).value.trim();
+      });
+
+      if (!payload.company) {
+        error.textContent = 'Please at least fill in the company name.';
+        error.classList.add('visible');
+        return;
+      }
+
+      await handleAIToolSubmit({
+        buttonEl: btn,
+        loadingEl: loading,
+        errorEl: error,
+        resultEl: result,
+        resultBodyEl: resultBody,
+        endpoint: '/api/deal-memo',
+        payload,
+      });
+    });
+
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      copyResultToClipboard(resultBody, document.getElementById('copy-btn'));
+    });
+  </script>
+</body>
+</html>
