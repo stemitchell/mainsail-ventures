@@ -12,4 +12,7 @@ window.MAINSAIL_CONFIG = {
 
   // Optional: for the permit-watch URL link on the landing page
   PERMIT_WATCH_URL: 'https://permit-watch.YOUR-SUBDOMAIN.workers.dev',
+   ```javascript
+   SOURCING_API_URL: 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE',
+   ```
 };
