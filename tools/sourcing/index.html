@@ -1,1 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sourcing Pipeline | Mainsail Tools</title>
+  <link rel="stylesheet" href="../shared/styles.css">
+  <style>
+    .container-wide {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
 
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .stats-strip {
+      display: flex;
+      gap: 0;
+      margin-bottom: 24px;
+      border: 1px solid var(--slate-200);
+      background: var(--paper);
+    }
+
+    .stat {
+      flex: 1;
+      padding: 14px 18px;
+      border-right: 1px solid var(--slate-200);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .stat:last-child { border-right: none; }
+    .stat:hover { background: var(--slate-50); }
+    .stat.active { background: var(--navy); color: var(--cream); }
+    .stat.active .stat-label { color: var(--brass-light); }
+    .stat.active .stat-value { color: var(--cream); }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      font-weight: 600;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--navy);
+      font-feature-settings: 'tnum';
+      line-height: 1.1;
+      margin-top: 2px;
+    }
+
+    .quick-capture {
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      border-left: 4px solid var(--brass);
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+
+    .quick-capture-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .quick-capture-row {
+      display: grid;
+      grid-template-columns: 2fr 1.5fr 1.5fr 1fr auto;
+      gap: 8px;
+    }
+
+    @media (max-width: 800px) {
+      .quick-capture-row { grid-template-columns: 1fr; }
+    }
+
+    .quick-capture input,
+    .quick-capture select {
+      padding: 8px 10px;
+      font-size: 0.9rem;
+    }
+
+    .quick-capture button {
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-row input,
+    .filter-row select {
+      padding: 6px 10px;
+      font-size: 0.85rem;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .pipeline-table {
+      background: var(--paper);
+      border: 1px solid var(--slate-200);
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .pipeline-table th {
+      background: var(--slate-50);
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      font-weight: 600;
+      border-bottom: 1px solid var(--slate-200);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .pipeline-table th:hover {
+      background: var(--slate-100);
+      color: var(--navy);
+    }
+
+    .pipeline-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--slate-100);
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+
+    .pipeline-table tr {
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+
+    .pipeline-table tr:hover {
+      background: var(--slate-50);
+    }
+
+    .pipeline-table tr.passed {
+      opacity: 0.5;
+    }
+
+    .target-name {
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .target-meta {
+      font-size: 0.75rem;
+      color: var(--slate-500);
+      margin-top: 2px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      text-transform: uppercase;
+      border-radius: 0;
+    }
+
+    .badge-new { background: var(--slate-100); color: var(--slate-700); }
+    .badge-researching { background: #fef3c7; color: #92400e; }
+    .badge-contacted { background: #dbeafe; color: #1e40af; }
+    .badge-meeting { background: #ddd6fe; color: #5b21b6; }
+    .badge-loi { background: #d1fae5; color: #065f46; }
+    .badge-diligence { background: #fae8ff; color: #6b21a8; }
+    .badge-closed { background: var(--brass); color: white; }
+    .badge-passed { background: #fee2e2; color: #991b1b; }
+    .badge-watch { background: #e0e7ff; color: #3730a3; }
+
+    .score-pill {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 2px 8px;
+      background: var(--navy);
+      color: var(--cream);
+      min-width: 36px;
+      text-align: center;
+    }
+
+    .score-pill.high { background: var(--success); }
+    .score-pill.med { background: var(--brass); }
+    .score-pill.low { background: var(--slate-400); }
+
+    .empty-state {
+      text-align: center;
+      padding: 64px 24px;
+      color: var(--slate-500);
+    }
+
+    .empty-state h3 {
+      color: var(--slate-700);
+      margin-bottom: 8px;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 42, 68, 0.6);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      z-index: 100;
+      overflow-y: auto;
+      padding: 32px 16px;
+    }
+
+    .modal-overlay.visible { display: flex; }
+
+    .modal {
+      background: var(--cream);
+      width: 100%;
+      max-width: 760px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      animation: slideDown 0.25s ease;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+      border-bottom: 2px solid var(--navy);
+      background: var(--paper);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .modal-id {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--slate-500);
+      margin-top: 2px;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--slate-500);
+      cursor: pointer;
+      padding: 4px 12px;
+      line-height: 1;
+    }
+
+    .modal-close:hover { color: var(--navy); background: none; }
+
+    .modal-body {
+      padding: 24px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .modal-section {
+      margin-bottom: 24px;
+    }
+
+    .modal-section-header {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      font-weight: 600;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .modal-grid { grid-template-columns: 1fr; }
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 24px;
+      border-top: 1px solid var(--slate-200);
+      background: var(--paper);
+    }
+
+    .modal-footer-left,
+    .modal-footer-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    .button-danger {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+    .button-danger:hover { background: #fecaca; }
+
+    .contact-log-display {
+      background: var(--slate-50);
+      padding: 12px;
+      font-size: 0.85rem;
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      font-family: var(--font-mono);
+      line-height: 1.5;
+    }
+
+    .log-quick-add {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--navy);
+      color: var(--cream);
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      z-index: 200;
+      animation: toastIn 0.2s ease;
+    }
+
+    @keyframes toastIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .toast.error { background: var(--error); }
+
+    .api-warning {
+      background: #fef3c7;
+      border-left: 4px solid #d97706;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+    }
+
+    .api-warning code {
+      background: white;
+      padding: 2px 6px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(248, 244, 237, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+    .loading-overlay.visible { display: flex; }
+  </style>
+</head>
+<body>
+  <div class="container-wide">
+    <header class="masthead">
+      <div class="masthead-brand">
+        <span class="masthead-brand-name">Mainsail</span>
+        <span class="masthead-brand-tag">Tools / Sourcing</span>
+      </div>
+      <nav class="masthead-nav">
+        <a href="../">All tools</a>
+      </nav>
+    </header>
+
+    <div class="page-header">
+      <div class="page-eyebrow">06 &middot; Pipeline tool</div>
+      <h1 class="page-title">Sourcing Pipeline</h1>
+      <p class="page-lede">Capture targets fast.  Track outreach.  Score against your ICP.  Stored in Google Sheets so you can edit from anywhere.</p>
+    </div>
+
+    <div id="api-warning" class="api-warning" style="display:none;">
+      <strong>Setup needed:</strong> The sourcing API is not configured yet.  Open <code>shared/config.js</code> and set <code>SOURCING_API_URL</code> to your deployed Apps Script web app URL.
+    </div>
+
+    <div class="stats-strip" id="stats-strip">
+      <div class="stat" data-filter="all"><div class="stat-label">All</div><div class="stat-value" id="stat-all">0</div></div>
+      <div class="stat" data-filter="New"><div class="stat-label">New</div><div class="stat-value" id="stat-new">0</div></div>
+      <div class="stat" data-filter="Researching"><div class="stat-label">Researching</div><div class="stat-value" id="stat-researching">0</div></div>
+      <div class="stat" data-filter="Contacted"><div class="stat-label">Contacted</div><div class="stat-value" id="stat-contacted">0</div></div>
+      <div class="stat" data-filter="Meeting Set"><div class="stat-label">Meeting</div><div class="stat-value" id="stat-meeting">0</div></div>
+      <div class="stat" data-filter="LOI"><div class="stat-label">LOI</div><div class="stat-value" id="stat-loi">0</div></div>
+      <div class="stat" data-filter="Watch"><div class="stat-label">Watch</div><div class="stat-value" id="stat-watch">0</div></div>
+      <div class="stat" data-filter="Passed"><div class="stat-label">Passed</div><div class="stat-value" id="stat-passed">0</div></div>
+    </div>
+
+    <div class="quick-capture">
+      <div class="quick-capture-label">Quick capture</div>
+      <div class="quick-capture-row">
+        <input type="text" id="qc-company" placeholder="Company name (required)">
+        <input type="text" id="qc-location" placeholder="Location (e.g., Gaithersburg, MD)">
+        <select id="qc-county">
+          <option value="">County</option>
+          <option value="Montgomery">Montgomery</option>
+          <option value="Frederick">Frederick</option>
+          <option value="Howard">Howard</option>
+          <option value="Prince George's">Prince George's</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" id="qc-source" placeholder="Source">
+        <button id="qc-add">Add target</button>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <input type="text" class="search-input" id="search" placeholder="Search company, location, owner...">
+      <select id="filter-county">
+        <option value="">All counties</option>
+        <option value="Montgomery">Montgomery</option>
+        <option value="Frederick">Frederick</option>
+        <option value="Howard">Howard</option>
+        <option value="Prince George's">Prince George's</option>
+        <option value="Other">Other</option>
+      </select>
+      <select id="sort-by">
+        <option value="created-desc">Newest first</option>
+        <option value="created-asc">Oldest first</option>
+        <option value="score-desc">Highest score first</option>
+        <option value="company-asc">Company A-Z</option>
+        <option value="last-contact-desc">Recently contacted</option>
+        <option value="last-contact-asc">Stalest first</option>
+      </select>
+      <button class="button-secondary" id="export-csv" style="font-size:0.8rem; padding:6px 14px;">Export CSV</button>
+      <button class="button-secondary" id="refresh" style="font-size:0.8rem; padding:6px 14px;">Refresh</button>
+    </div>
+
+    <table class="pipeline-table" id="pipeline">
+      <thead>
+        <tr>
+          <th data-sort="company">Company</th>
+          <th data-sort="status">Status</th>
+          <th data-sort="score">Score</th>
+          <th data-sort="lastContact">Last contact</th>
+          <th data-sort="nextAction">Next action</th>
+        </tr>
+      </thead>
+      <tbody id="pipeline-body"></tbody>
+    </table>
+
+    <div class="empty-state" id="empty-state" style="display:none;">
+      <h3>No targets yet</h3>
+      <p>Add your first target with the Quick Capture form above.</p>
+    </div>
+
+    <footer class="footer">
+      Mainsail Ventures &middot; Built for Steve Mitchell
+    </footer>
+  </div>
+
+  <!-- Detail modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="modal-title">Target detail</div>
+          <div class="modal-id" id="modal-id"></div>
+        </div>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <div class="modal-section">
+          <div class="modal-section-header">Identification</div>
+          <div class="modal-grid">
+            <div class="field">
+              <label>Company</label>
+              <input type="text" id="m-company">
+            </div>
+            <div class="field">
+              <label>Status</label>
+              <select id="m-status">
+                <option>New</option>
+                <option>Researching</option>
+                <option>Contacted</option>
+                <option>Meeting Set</option>
+                <option>LOI</option>
+                <option>Diligence</option>
+                <option>Closed</option>
+                <option>Watch</option>
+                <option>Passed</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Location</label>
+              <input type="text" id="m-location">
+            </div>
+            <div class="field">
+              <label>County</label>
+              <select id="m-county">
+                <option value="">--</option>
+                <option>Montgomery</option>
+                <option>Frederick</option>
+                <option>Howard</option>
+                <option>Prince George's</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Source</label>
+              <input type="text" id="m-source">
+            </div>
+            <div class="field">
+              <label>Website</label>
+              <input type="text" id="m-website">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-header">Owner contact</div>
+          <div class="modal-grid">
+            <div class="field"><label>Owner name</label><input type="text" id="m-ownerName"></div>
+            <div class="field"><label>Owner email</label><input type="text" id="m-ownerEmail"></div>
+            <div class="field"><label>Owner phone</label><input type="text" id="m-ownerPhone"></div>
+            <div class="field"><label>Tags (comma separated)</label><input type="text" id="m-tags"></div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-header">Financials & scale</div>
+          <div class="modal-grid">
+            <div class="field"><label>Est revenue</label><input type="text" id="m-estRevenue" placeholder="e.g., $4.2M"></div>
+            <div class="field"><label>Est SDE</label><input type="text" id="m-estSDE" placeholder="e.g., $750K"></div>
+            <div class="field"><label>Headcount</label><input type="text" id="m-headcount"></div>
+            <div class="field"><label>Years in business</label><input type="text" id="m-yearsInBusiness"></div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-header">Score & priority</div>
+          <div class="modal-grid">
+            <div class="field">
+              <label>Signal score (0-100)</label>
+              <input type="number" id="m-signalScore" min="0" max="100">
+              <div class="field-hint">Use Signal Score Calculator for full rubric, or enter quick estimate</div>
+            </div>
+            <div class="field">
+              <label>Score tier</label>
+              <select id="m-scoreTier">
+                <option value="">--</option>
+                <option>Pursue actively</option>
+                <option>Pursue</option>
+                <option>Watch</option>
+                <option>Pass</option>
+              </select>
+            </div>
+            <div class="field"><label>Next action</label><input type="text" id="m-nextAction"></div>
+            <div class="field"><label>Next action date</label><input type="date" id="m-nextActionDate"></div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-header">Research notes</div>
+          <textarea id="m-researchNotes" rows="6" placeholder="Public records findings, web research, owner signals, license depth, customer mix, anything you have learned."></textarea>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-header">Contact log</div>
+          <div class="contact-log-display" id="m-contactLog-display">No log entries yet.</div>
+          <div class="log-quick-add">
+            <input type="text" id="m-log-entry" placeholder="Log a contact: 'Cold email sent', 'Spoke with owner', etc.">
+            <button id="m-log-add" class="button-secondary" style="font-size:0.85rem;">Log it</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="modal-footer-left">
+          <button class="button-danger" id="m-delete">Delete</button>
+        </div>
+        <div class="modal-footer-right">
+          <button class="button-secondary" id="m-cancel">Cancel</button>
+          <button id="m-save">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner" style="width:40px; height:40px;"></div>
+  </div>
+
+  <script src="../shared/config.js"></script>
+  <script>
+    // ==================================================================
+    // STATE
+    // ==================================================================
+    let targets = [];
+    let activeFilter = 'all';
+    let activeCounty = '';
+    let activeSearch = '';
+    let activeSort = 'created-desc';
+    let editingId = null;
+
+    const apiUrl = (window.MAINSAIL_CONFIG && window.MAINSAIL_CONFIG.SOURCING_API_URL) || '';
+
+    // ==================================================================
+    // INIT
+    // ==================================================================
+    function init() {
+      if (!apiUrl || apiUrl.includes('YOUR-SCRIPT-URL') || !apiUrl.startsWith('http')) {
+        document.getElementById('api-warning').style.display = 'block';
+        return;
+      }
+      loadTargets();
+    }
+
+    // ==================================================================
+    // API
+    // ==================================================================
+    async function apiGet(action, params = {}) {
+      const url = new URL(apiUrl);
+      url.searchParams.set('action', action);
+      Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+      const res = await fetch(url.toString());
+      if (!res.ok) throw new Error('API error ' + res.status);
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || 'Unknown error');
+      return data;
+    }
+
+    async function apiPost(action, body) {
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(Object.assign({ action }, body)),
+      });
+      if (!res.ok) throw new Error('API error ' + res.status);
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || 'Unknown error');
+      return data;
+    }
+
+    async function loadTargets() {
+      showLoading(true);
+      try {
+        const data = await apiGet('list');
+        targets = data.targets || [];
+        render();
+      } catch (e) {
+        toast(e.message, 'error');
+      } finally {
+        showLoading(false);
+      }
+    }
+
+    // ==================================================================
+    // RENDER
+    // ==================================================================
+    function render() {
+      // Update stat counts
+      document.getElementById('stat-all').textContent = targets.length;
+      document.getElementById('stat-new').textContent = targets.filter(t => t.status === 'New').length;
+      document.getElementById('stat-researching').textContent = targets.filter(t => t.status === 'Researching').length;
+      document.getElementById('stat-contacted').textContent = targets.filter(t => t.status === 'Contacted').length;
+      document.getElementById('stat-meeting').textContent = targets.filter(t => t.status === 'Meeting Set').length;
+      document.getElementById('stat-loi').textContent = targets.filter(t => t.status === 'LOI' || t.status === 'Diligence' || t.status === 'Closed').length;
+      document.getElementById('stat-watch').textContent = targets.filter(t => t.status === 'Watch').length;
+      document.getElementById('stat-passed').textContent = targets.filter(t => t.status === 'Passed').length;
+
+      // Active filter highlight
+      document.querySelectorAll('.stat').forEach(el => {
+        el.classList.toggle('active', el.dataset.filter === activeFilter);
+      });
+
+      // Filter
+      let filtered = targets.slice();
+      if (activeFilter !== 'all') {
+        if (activeFilter === 'LOI') {
+          filtered = filtered.filter(t => ['LOI', 'Diligence', 'Closed'].includes(t.status));
+        } else {
+          filtered = filtered.filter(t => t.status === activeFilter);
+        }
+      }
+      if (activeCounty) {
+        filtered = filtered.filter(t => t.county === activeCounty);
+      }
+      if (activeSearch) {
+        const q = activeSearch.toLowerCase();
+        filtered = filtered.filter(t =>
+          (t.company || '').toLowerCase().includes(q) ||
+          (t.location || '').toLowerCase().includes(q) ||
+          (t.ownerName || '').toLowerCase().includes(q) ||
+          (t.tags || '').toLowerCase().includes(q)
+        );
+      }
+
+      // Sort
+      filtered.sort((a, b) => {
+        switch (activeSort) {
+          case 'created-asc': return (a.created || '').localeCompare(b.created || '');
+          case 'created-desc': return (b.created || '').localeCompare(a.created || '');
+          case 'company-asc': return (a.company || '').localeCompare(b.company || '');
+          case 'score-desc': return (parseFloat(b.signalScore) || 0) - (parseFloat(a.signalScore) || 0);
+          case 'last-contact-desc': return (b.lastContact || '').localeCompare(a.lastContact || '');
+          case 'last-contact-asc': return (a.lastContact || '').localeCompare(b.lastContact || '');
+          default: return 0;
+        }
+      });
+
+      const body = document.getElementById('pipeline-body');
+      const empty = document.getElementById('empty-state');
+      const table = document.getElementById('pipeline');
+
+      if (filtered.length === 0) {
+        table.style.display = 'none';
+        empty.style.display = 'block';
+        if (targets.length > 0) {
+          empty.querySelector('h3').textContent = 'No targets match the current filter';
+          empty.querySelector('p').textContent = 'Try clearing filters above.';
+        }
+        return;
+      }
+
+      table.style.display = '';
+      empty.style.display = 'none';
+
+      body.innerHTML = filtered.map(t => `
+        <tr data-id="${escapeHtml(t.id)}" class="${t.status === 'Passed' ? 'passed' : ''}">
+          <td>
+            <div class="target-name">${escapeHtml(t.company || '(no name)')}</div>
+            <div class="target-meta">${escapeHtml(t.location || '')}${t.county ? ' &middot; ' + escapeHtml(t.county) : ''}${t.source ? ' &middot; ' + escapeHtml(t.source) : ''}</div>
+          </td>
+          <td><span class="badge ${statusBadgeClass(t.status)}">${escapeHtml(t.status || 'New')}</span></td>
+          <td>${t.signalScore ? `<span class="score-pill ${scoreClass(t.signalScore)}">${escapeHtml(String(t.signalScore))}</span>` : '<span style="color:var(--slate-400);">—</span>'}</td>
+          <td style="font-size:0.85rem; color:var(--slate-700);">${t.lastContact ? formatRelativeDate(t.lastContact) : '<span style="color:var(--slate-400);">never</span>'}</td>
+          <td style="font-size:0.85rem;">${escapeHtml(t.nextAction || '') || '<span style="color:var(--slate-400);">—</span>'}</td>
+        </tr>
+      `).join('');
+
+      body.querySelectorAll('tr').forEach(tr => {
+        tr.addEventListener('click', () => openModal(tr.dataset.id));
+      });
+    }
+
+    function statusBadgeClass(s) {
+      const map = {
+        'New': 'badge-new',
+        'Researching': 'badge-researching',
+        'Contacted': 'badge-contacted',
+        'Meeting Set': 'badge-meeting',
+        'LOI': 'badge-loi',
+        'Diligence': 'badge-diligence',
+        'Closed': 'badge-closed',
+        'Watch': 'badge-watch',
+        'Passed': 'badge-passed',
+      };
+      return map[s] || 'badge-new';
+    }
+
+    function scoreClass(s) {
+      const n = parseFloat(s);
+      if (n >= 65) return 'high';
+      if (n >= 50) return 'med';
+      return 'low';
+    }
+
+    function formatRelativeDate(iso) {
+      try {
+        const d = new Date(iso);
+        if (isNaN(d.getTime())) return iso;
+        const days = Math.floor((Date.now() - d.getTime()) / (24 * 60 * 60 * 1000));
+        if (days === 0) return 'today';
+        if (days === 1) return 'yesterday';
+        if (days < 7) return `${days}d ago`;
+        if (days < 30) return `${Math.floor(days / 7)}w ago`;
+        if (days < 365) return `${Math.floor(days / 30)}mo ago`;
+        return `${Math.floor(days / 365)}y ago`;
+      } catch (e) { return ''; }
+    }
+
+    // ==================================================================
+    // QUICK CAPTURE
+    // ==================================================================
+    document.getElementById('qc-add').addEventListener('click', async () => {
+      const company = document.getElementById('qc-company').value.trim();
+      if (!company) {
+        toast('Company name is required', 'error');
+        return;
+      }
+      const target = {
+        company,
+        location: document.getElementById('qc-location').value.trim(),
+        county: document.getElementById('qc-county').value,
+        source: document.getElementById('qc-source').value.trim(),
+        status: 'New',
+      };
+      showLoading(true);
+      try {
+        const result = await apiPost('create', { target });
+        targets.unshift(result.target);
+        document.getElementById('qc-company').value = '';
+        document.getElementById('qc-location').value = '';
+        document.getElementById('qc-county').value = '';
+        document.getElementById('qc-source').value = '';
+        render();
+        toast('Target added');
+      } catch (e) {
+        toast(e.message, 'error');
+      } finally {
+        showLoading(false);
+      }
+    });
+
+    // ==================================================================
+    // FILTERS
+    // ==================================================================
+    document.querySelectorAll('.stat').forEach(el => {
+      el.addEventListener('click', () => {
+        activeFilter = el.dataset.filter;
+        render();
+      });
+    });
+
+    document.getElementById('search').addEventListener('input', (e) => {
+      activeSearch = e.target.value;
+      render();
+    });
+
+    document.getElementById('filter-county').addEventListener('change', (e) => {
+      activeCounty = e.target.value;
+      render();
+    });
+
+    document.getElementById('sort-by').addEventListener('change', (e) => {
+      activeSort = e.target.value;
+      render();
+    });
+
+    document.getElementById('refresh').addEventListener('click', loadTargets);
+
+    document.getElementById('export-csv').addEventListener('click', () => {
+      if (targets.length === 0) { toast('Nothing to export'); return; }
+      const headers = ['ID','Company','Location','County','Source','Status','Owner','Email','Phone','Website','Est Revenue','Est SDE','Headcount','Years','Signal Score','Tier','Last Contact','Next Action','Next Action Date','Tags'];
+      const csv = [headers.join(',')];
+      targets.forEach(t => {
+        const row = [t.id, t.company, t.location, t.county, t.source, t.status, t.ownerName, t.ownerEmail, t.ownerPhone, t.website, t.estRevenue, t.estSDE, t.headcount, t.yearsInBusiness, t.signalScore, t.scoreTier, t.lastContact, t.nextAction, t.nextActionDate, t.tags];
+        csv.push(row.map(v => `"${String(v || '').replace(/"/g, '""')}"`).join(','));
+      });
+      const blob = new Blob([csv.join('\n')], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `mainsail-targets-${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // ==================================================================
+    // MODAL
+    // ==================================================================
+    function openModal(id) {
+      const t = targets.find(x => x.id === id);
+      if (!t) return;
+      editingId = id;
+      document.getElementById('modal-title').textContent = t.company || '(unnamed target)';
+      document.getElementById('modal-id').textContent = id;
+      const fields = ['company','location','county','source','website','status','ownerName','ownerEmail','ownerPhone','tags','estRevenue','estSDE','headcount','yearsInBusiness','signalScore','scoreTier','nextAction','researchNotes'];
+      fields.forEach(f => {
+        const el = document.getElementById('m-' + f);
+        if (el) el.value = t[f] || '';
+      });
+      // Date fields need slicing
+      const nad = document.getElementById('m-nextActionDate');
+      nad.value = t.nextActionDate ? String(t.nextActionDate).slice(0, 10) : '';
+      // Contact log display
+      const log = document.getElementById('m-contactLog-display');
+      log.textContent = t.contactLog || 'No log entries yet.';
+      document.getElementById('m-log-entry').value = '';
+      document.getElementById('modal-overlay').classList.add('visible');
+    }
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('visible');
+      editingId = null;
+    }
+
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    document.getElementById('m-cancel').addEventListener('click', closeModal);
+    document.getElementById('modal-overlay').addEventListener('click', (e) => {
+      if (e.target.id === 'modal-overlay') closeModal();
+    });
+
+    document.getElementById('m-save').addEventListener('click', async () => {
+      if (!editingId) return;
+      const fields = ['company','location','county','source','website','status','ownerName','ownerEmail','ownerPhone','tags','estRevenue','estSDE','headcount','yearsInBusiness','signalScore','scoreTier','nextAction','researchNotes'];
+      const updates = {};
+      fields.forEach(f => {
+        const el = document.getElementById('m-' + f);
+        if (el) updates[f] = el.value;
+      });
+      const nad = document.getElementById('m-nextActionDate').value;
+      updates.nextActionDate = nad || '';
+      showLoading(true);
+      try {
+        const result = await apiPost('update', { id: editingId, updates });
+        const idx = targets.findIndex(t => t.id === editingId);
+        if (idx >= 0) targets[idx] = result.target;
+        render();
+        closeModal();
+        toast('Saved');
+      } catch (e) {
+        toast(e.message, 'error');
+      } finally {
+        showLoading(false);
+      }
+    });
+
+    document.getElementById('m-delete').addEventListener('click', async () => {
+      if (!editingId) return;
+      if (!confirm('Delete this target?  This cannot be undone.')) return;
+      showLoading(true);
+      try {
+        await apiPost('delete', { id: editingId });
+        targets = targets.filter(t => t.id !== editingId);
+        render();
+        closeModal();
+        toast('Deleted');
+      } catch (e) {
+        toast(e.message, 'error');
+      } finally {
+        showLoading(false);
+      }
+    });
+
+    document.getElementById('m-log-add').addEventListener('click', async () => {
+      if (!editingId) return;
+      const entry = document.getElementById('m-log-entry').value.trim();
+      if (!entry) return;
+      showLoading(true);
+      try {
+        const result = await apiPost('log_contact', { id: editingId, entry });
+        const idx = targets.findIndex(t => t.id === editingId);
+        if (idx >= 0) targets[idx] = result.target;
+        document.getElementById('m-contactLog-display').textContent = result.target.contactLog || '';
+        document.getElementById('m-log-entry').value = '';
+        render();
+        toast('Logged');
+      } catch (e) {
+        toast(e.message, 'error');
+      } finally {
+        showLoading(false);
+      }
+    });
+
+    // ==================================================================
+    // UTILITIES
+    // ==================================================================
+    function escapeHtml(s) {
+      if (s === null || s === undefined) return '';
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function showLoading(on) {
+      document.getElementById('loading-overlay').classList.toggle('visible', on);
+    }
+
+    function toast(msg, type) {
+      const el = document.createElement('div');
+      el.className = 'toast' + (type === 'error' ? ' error' : '');
+      el.textContent = msg;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 3000);
+    }
+
+    // Allow Enter key in quick capture
+    ['qc-company','qc-location','qc-source'].forEach(id => {
+      document.getElementById(id).addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') document.getElementById('qc-add').click();
+      });
+    });
+
+    init();
+  </script>
+</body>
+</html>
