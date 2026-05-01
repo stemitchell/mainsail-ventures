@@ -2,17 +2,8 @@
 // AFTER YOU DEPLOY THE WORKER: replace these placeholder values with your real values.
 
 window.MAINSAIL_CONFIG = {
-  // The URL Wrangler printed when you ran `wrangler deploy` for claude-proxy.
-  // Example: 'https://claude-proxy.mainsail.workers.dev'
   WORKER_URL: 'https://claude-proxy.mainsail-ventures.workers.dev',
-
-  // The hex string you generated with `openssl rand -hex 32` and set as the
-  // SHARED_SECRET worker secret.  This must match exactly.
   SHARED_SECRET: '249e65eb540f12c9985a95405a191ddf207f0f85eeb6a31783770ada3c61a83e',
-
-  // Optional: for the permit-watch URL link on the landing page
   PERMIT_WATCH_URL: 'https://permit-watch.YOUR-SUBDOMAIN.workers.dev',
-   ```javascript
-   SOURCING_API_URL: 'https://script.google.com/macros/s/AKfycbzlTUphhgAgueC9idrY79BPij3LochLSnCFZBsdylElKDNW_oVwZporVR4vJDWmmr8yBA/exec',
-   ```
+  SOURCING_API_URL: 'https://script.google.com/macros/s/AKfycbzlTUphhgAgueC9idrY79BPij3LochLSnCFZBsdylElKDNW_oVwZporVR4vJDWmmr8yBA/exec',
 };
