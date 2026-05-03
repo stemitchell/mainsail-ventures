@@ -1,11 +1,24 @@
 {
   "name": "Mainsail Ventures",
   "short_name": "Mainsail",
+  "description": "Acquiring and operating an established commercial electrical contractor in the DC, Maryland, and Virginia corridor.",
   "icons": [
-    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "favicon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ],
-  "theme_color": "#071321",
-  "background_color": "#071321",
-  "display": "standalone"
+  "theme_color": "#0F1823",
+  "background_color": "#0F1823",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/"
 }

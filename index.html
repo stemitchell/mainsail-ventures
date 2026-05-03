@@ -1,747 +1,983 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mainsail Ventures | Business Acquisition & Operations</title>
-<meta name="description" content="Mainsail Ventures acquires and operates established, profitable businesses in essential services industries. We preserve your legacy while unlocking the next chapter of growth.">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
-<meta name="msapplication-TileImage" content="mstile-150x150.png">
-<meta name="msapplication-TileColor" content="#071321">
-<meta name="msapplication-config" content="browserconfig.xml">
-<meta name="theme-color" content="#071321">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mainsail Ventures | Acquire · Operate · Grow</title>
+<meta name="description" content="Mainsail Ventures is acquiring and operating an established commercial electrical contractor in the DC, Maryland, and Virginia corridor." />
+<meta name="author" content="Steven Mitchell" />
+
+<!-- Favicons (cache-busted v3) -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=3" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3" />
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=3" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=3" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png?v=3" />
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png?v=3" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
+<link rel="manifest" href="/site.webmanifest?v=3" />
+<meta name="msapplication-config" content="/browserconfig.xml?v=3" />
+<meta name="msapplication-TileColor" content="#0F1823" />
+<meta name="theme-color" content="#0F1823" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Mainsail Ventures" />
+<meta property="og:description" content="Acquire · Operate · Grow. Commercial electrical contracting in the DC, Maryland, and Virginia corridor." />
+<meta property="og:image" content="/favicon-512.png" />
+<meta property="og:url" content="https://mainsail.group" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0F1823;
+    --navy-deep: #0A1119;
+    --navy-soft: #16202D;
+    --cream: #F6F3EE;
+    --cream-dim: #E8E3D9;
+    --gold: #C9963E;
+    --gold-soft: #D4A858;
+    --gold-deep: #A87A2A;
+    --muted-blue: #6B7482;
+    --muted-warm: #8A867C;
+    --rule: rgba(201, 150, 62, 0.35);
+    --rule-soft: rgba(246, 243, 238, 0.12);
+  }
 
-:root {
-  --navy: #071321;
-  --navy-mid: #0E2133;
-  --navy-light: #142434;
-  --navy-accent: #1B2C3E;
-  --slate: #2D4A66;
-  --sand: #E0D5C3;
-  --sand-light: #EDE8DF;
-  --cream: #F8F5F0;
-  --gold: #C9963E;
-  --gold-hover: #D9A84E;
-  --gold-dim: rgba(201, 150, 62, 0.15);
-  --silver: #B8C0CA;
-  --white: #FFFFFF;
-  --text-body: #4A4A5A;
-  --text-light: #7A7A8A;
-  --divider: rgba(7, 19, 33, 0.07);
-}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+  html { scroll-behavior: smooth; }
 
-body {
-  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-  color: var(--navy);
-  background: var(--cream);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    font-family: 'Manrope', system-ui, sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    line-height: 1.6;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
 
-h1, h2, h3, h4, h5 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 600;
-}
+  /* === NAVIGATION === */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 22px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    transition: all 0.3s ease;
+    background: rgba(15, 24, 35, 0);
+    backdrop-filter: blur(0px);
+  }
 
-/* ===================== SCROLL REVEAL ===================== */
-.reveal {
-  opacity: 1; transform: translateY(0);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.reveal.hidden { opacity: 0; transform: translateY(40px); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
+  nav.scrolled {
+    background: rgba(15, 24, 35, 0.92);
+    backdrop-filter: blur(14px);
+    padding: 14px 48px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
 
-/* ===================== NAVIGATION ===================== */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 56px; height: 72px;
-  background: rgba(7, 19, 33, 0.97);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(201, 150, 62, 0.1);
-  transition: all 0.3s;
-}
-nav.scrolled { height: 64px; box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+  /* Logo + brand lockup using closing-slide treatment */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+  }
 
-.nav-logo {
-  display: flex; align-items: center; gap: 14px;
-  text-decoration: none; color: var(--white);
-}
-.nav-logo img {
-  width: 44px; height: 44px; border-radius: 50%;
-  object-fit: cover;
-}
-.nav-wordmark { display: flex; flex-direction: column; line-height: 1; }
-.nav-wordmark .name {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 16px; font-weight: 600; letter-spacing: 3px;
-  text-transform: uppercase;
-}
-.nav-wordmark .sub {
-  font-size: 9px; font-weight: 600; letter-spacing: 4px;
-  color: var(--gold); text-transform: uppercase; margin-top: 3px;
-}
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+    background: var(--navy-deep);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--rule-soft);
+    flex-shrink: 0;
+  }
 
-.nav-links { display: flex; gap: 40px; list-style: none; }
-.nav-links a {
-  color: rgba(255,255,255,0.6); text-decoration: none;
-  font-size: 13px; font-weight: 500; letter-spacing: 0.6px;
-  transition: color 0.3s; position: relative;
-}
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -4px; left: 0;
-  width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
-}
-.nav-links a:hover { color: var(--white); }
-.nav-links a:hover::after { width: 100%; }
+  .brand-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.4);
+  }
 
-.nav-cta {
-  display: inline-block; background: transparent;
-  border: 1px solid rgba(201, 150, 62, 0.5);
-  color: var(--gold); padding: 10px 28px;
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  text-decoration: none; transition: all 0.3s;
-}
-.nav-cta:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    padding-top: 2px;
+  }
 
-.mobile-menu-btn {
-  display: none; background: none; border: none;
-  cursor: pointer; padding: 8px;
-}
-.mobile-menu-btn span {
-  display: block; width: 24px; height: 2px;
-  background: var(--white); margin: 5px 0; transition: all 0.3s;
-}
+  .brand-text .mainsail {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 0.01em;
+    line-height: 1;
+  }
 
-/* ===================== HERO ===================== */
-.hero {
-  min-height: 100vh; display: flex; align-items: center;
-  background: var(--navy); position: relative; overflow: hidden;
-}
-.hero-bg {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 70% 50% at 65% 45%, rgba(20, 36, 52, 0.8), transparent 70%),
-    radial-gradient(ellipse 40% 40% at 15% 85%, rgba(201, 150, 62, 0.04), transparent);
-}
-.hero-glow {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px; height: 400px;
-  background: radial-gradient(ellipse, rgba(20, 36, 52, 0.6), transparent 70%);
-  pointer-events: none;
-}
-.hero-content {
-  position: relative; z-index: 2;
-  max-width: 760px; padding: 140px 56px 120px;
-}
-.hero-label {
-  display: inline-flex; align-items: center; gap: 12px;
-  font-size: 11px; font-weight: 700; letter-spacing: 3.5px;
-  text-transform: uppercase; color: var(--gold);
-  margin-bottom: 36px;
-  opacity: 0; animation: fadeUp 0.7s ease-out 0.3s forwards;
-}
-.hero-label::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+  .brand-text .ventures-rule {
+    width: 22px;
+    height: 1px;
+    background: var(--gold);
+    margin: 6px 0 5px 0;
+    opacity: 0.7;
+  }
 
-.hero h1 {
-  font-size: clamp(40px, 5.2vw, 68px);
-  line-height: 1.08; color: var(--white);
-  margin-bottom: 28px; font-weight: 500;
-  opacity: 0; animation: fadeUp 0.8s ease-out 0.5s forwards;
-}
-.hero h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+  .brand-text .ventures {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    font-size: 9px;
+    color: var(--cream-dim);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
 
-.hero-desc {
-  font-size: 17px; line-height: 1.85;
-  color: rgba(255,255,255,0.5);
-  max-width: 540px; margin-bottom: 48px;
-  opacity: 0; animation: fadeUp 0.8s ease-out 0.7s forwards;
-}
-.hero-actions {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  opacity: 0; animation: fadeUp 0.8s ease-out 0.9s forwards;
-}
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
 
-.btn-gold {
-  display: inline-block; background: var(--gold); color: var(--navy);
-  padding: 16px 40px; font-size: 13px; font-weight: 700;
-  letter-spacing: 1.2px; text-transform: uppercase;
-  border: none; cursor: pointer; text-decoration: none; transition: all 0.35s;
-}
-.btn-gold:hover {
-  background: var(--gold-hover); transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(201, 150, 62, 0.25);
-}
-.btn-outline {
-  display: inline-block; background: transparent; color: rgba(255,255,255,0.7);
-  padding: 16px 40px; font-size: 13px; font-weight: 600;
-  letter-spacing: 1.2px; text-transform: uppercase;
-  border: 1px solid rgba(255,255,255,0.15);
-  text-decoration: none; transition: all 0.35s;
-}
-.btn-outline:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+  .nav-links a {
+    font-family: 'Manrope', sans-serif;
+    color: var(--cream-dim);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    position: relative;
+  }
 
-/* Hero logo mark */
-.hero-logo {
-  position: absolute; right: 8%; top: 50%;
-  transform: translateY(-50%);
-  width: 320px; height: 320px;
-  opacity: 0.12;
-  border-radius: 50%;
-  object-fit: cover;
-  pointer-events: none;
-}
+  .nav-links a:hover { color: var(--gold); }
 
-/* ===================== STATS BAR ===================== */
-.stats {
-  background: var(--navy-mid);
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid rgba(201, 150, 62, 0.1);
-}
-.stat {
-  padding: 44px 32px; text-align: center;
-  border-right: 1px solid rgba(255,255,255,0.03);
-  transition: background 0.3s;
-}
-.stat:last-child { border-right: none; }
-.stat:hover { background: rgba(255,255,255,0.02); }
-.stat-value {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 40px; font-weight: 600; color: var(--gold); margin-bottom: 8px;
-}
-.stat-label {
-  font-size: 11px; color: rgba(255,255,255,0.35);
-  letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
-}
+  .nav-links a.investor-link {
+    color: var(--gold);
+    border: 1px solid var(--rule);
+    padding: 10px 18px;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+  }
 
-/* ===================== ABOUT ===================== */
-.about { padding: 120px 56px; background: var(--cream); }
-.section-header { margin-bottom: 56px; }
-.section-label {
-  display: inline-flex; align-items: center; gap: 12px;
-  font-size: 11px; font-weight: 700; letter-spacing: 3.5px;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
-}
-.section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
-.section-header h2 {
-  font-size: clamp(30px, 3.8vw, 46px);
-  line-height: 1.15; color: var(--navy); margin-bottom: 20px;
-}
-.section-header .lead {
-  font-size: 17px; line-height: 1.85; color: var(--text-body); max-width: 600px;
-}
-.about-grid {
-  display: grid; grid-template-columns: 1.1fr 0.9fr;
-  gap: 72px; align-items: start;
-}
-.about-prose p {
-  font-size: 16px; line-height: 1.9; color: var(--text-body); margin-bottom: 20px;
-}
-.about-prose p strong { color: var(--navy); font-weight: 600; }
+  .nav-links a.investor-link:hover {
+    background: var(--gold);
+    color: var(--navy-deep);
+    border-color: var(--gold);
+  }
 
-.values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.value-card {
-  background: var(--white); padding: 32px 28px;
-  border: 1px solid var(--divider); transition: all 0.35s; position: relative;
-}
-.value-card::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 0; height: 2px; background: var(--gold); transition: width 0.35s;
-}
-.value-card:hover {
-  border-color: rgba(201, 150, 62, 0.2);
-  box-shadow: 0 8px 32px rgba(7, 19, 33, 0.06); transform: translateY(-3px);
-}
-.value-card:hover::before { width: 100%; }
-.value-icon {
-  width: 42px; height: 42px; background: var(--sand-light);
-  border-radius: 50%; margin-bottom: 18px;
-  display: flex; align-items: center; justify-content: center;
-}
-.value-icon svg { width: 20px; height: 20px; }
-.value-card h4 { font-size: 19px; color: var(--navy); margin-bottom: 10px; font-weight: 600; }
-.value-card p { font-size: 14px; line-height: 1.7; color: var(--text-light); }
+  /* === HERO === */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 64px 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
 
-/* ===================== APPROACH ===================== */
-.approach {
-  padding: 120px 56px; background: var(--navy);
-  position: relative; overflow: hidden;
-}
-.approach::before {
-  content: ''; position: absolute;
-  top: 0; right: 0; bottom: 0; width: 40%;
-  background: radial-gradient(ellipse at 80% 50%, rgba(20, 36, 52, 0.6), transparent 70%);
-}
-.approach .section-header h2 { color: var(--white); }
-.approach .section-header .lead { color: rgba(255,255,255,0.45); }
-.steps {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 0; margin-top: 8px; position: relative; z-index: 1;
-}
-.step { padding: 48px 40px; border-right: 1px solid rgba(255,255,255,0.04); }
-.step:last-child { border-right: none; }
-.step-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 72px; font-weight: 400;
-  color: rgba(201, 150, 62, 0.25); line-height: 1; margin-bottom: 20px;
-}
-.step h3 { font-size: 26px; color: var(--white); margin-bottom: 16px; font-weight: 500; }
-.step p { font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.4); }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(201, 150, 62, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(201, 150, 62, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
 
-/* ===================== CRITERIA ===================== */
-.criteria { padding: 120px 56px; background: var(--sand-light); }
-.criteria-layout {
-  display: grid; grid-template-columns: 1.2fr 0.8fr;
-  gap: 64px; align-items: start;
-}
-.criteria-list { list-style: none; }
-.criteria-item {
-  padding: 28px 0; border-bottom: 1px solid rgba(7, 19, 33, 0.06);
-  display: flex; gap: 20px; align-items: flex-start;
-}
-.criteria-item:first-child { padding-top: 0; }
-.check-circle {
-  width: 32px; height: 32px; flex-shrink: 0; background: var(--navy);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px;
-}
-.check-circle svg { width: 14px; height: 14px; }
-.criteria-item h4 { font-size: 19px; color: var(--navy); margin-bottom: 6px; font-weight: 600; }
-.criteria-item p { font-size: 14px; line-height: 1.75; color: var(--text-body); }
-.criteria-sidebar { background: var(--white); padding: 48px; border: 1px solid var(--divider); }
-.criteria-sidebar h3 { font-size: 26px; color: var(--navy); margin-bottom: 16px; }
-.criteria-sidebar p { font-size: 15px; line-height: 1.85; color: var(--text-body); margin-bottom: 32px; }
+  .hero-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
 
-/* ===================== WHY MAINSAIL ===================== */
-.why { padding: 120px 56px; background: var(--cream); }
-.why-founder {
-  display: grid; grid-template-columns: 280px 1fr;
-  gap: 56px; align-items: start; margin-top: 8px;
-}
-.founder-photo-wrap {
-  border: 1px solid rgba(201, 150, 62, 0.3);
-  padding: 16px; background: var(--white);
-}
-.founder-photo {
-  width: 100%; aspect-ratio: 4/5;
-  object-fit: cover; object-position: center top;
-  display: block; filter: grayscale(15%); transition: filter 0.4s;
-}
-.founder-photo:hover { filter: grayscale(0%); }
-.founder-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px; font-weight: 600; color: var(--navy); margin-top: 18px;
-}
-.founder-title {
-  font-size: 13px; color: var(--gold); font-weight: 600;
-  letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;
-}
-.founder-credentials {
-  list-style: none; margin-top: 14px; padding-top: 14px;
-  border-top: 1px solid var(--divider);
-}
-.founder-credentials li {
-  font-size: 13px; color: var(--text-light); line-height: 1.6;
-  padding: 3px 0; padding-left: 14px; position: relative;
-}
-.founder-credentials li::before {
-  content: ''; position: absolute; left: 0; top: 10px;
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--gold); opacity: 0.5;
-}
-.why-content { max-width: 720px; }
-.why-content blockquote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(22px, 2.8vw, 32px);
-  line-height: 1.55; color: var(--navy);
-  font-style: italic; font-weight: 400;
-  margin-bottom: 24px; padding-left: 28px;
-  border-left: 3px solid var(--gold);
-}
-.why-points {
-  margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
-}
-.why-point h4 { font-size: 20px; color: var(--navy); margin-bottom: 10px; }
-.why-point p { font-size: 14px; line-height: 1.75; color: var(--text-body); }
-.why-point .accent { width: 28px; height: 2px; background: var(--gold); margin-bottom: 20px; }
+  .hero-eyebrow {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
 
-/* ===================== CTA / CONTACT ===================== */
-.cta {
-  padding: 120px 56px; background: var(--navy-mid);
-  text-align: center; position: relative; overflow: hidden;
-}
-.cta::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(20, 36, 52, 0.5), transparent);
-}
-.cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
-.cta .section-label { justify-content: center; }
-.cta .section-label::before { display: none; }
-.cta h2 {
-  font-size: clamp(32px, 4vw, 50px); color: var(--white);
-  margin-bottom: 20px; font-weight: 500;
-}
-.cta p {
-  font-size: 17px; color: rgba(255,255,255,0.45);
-  line-height: 1.85; margin-bottom: 40px;
-}
-.cta-email {
-  display: inline-block; background: var(--gold); color: var(--navy);
-  padding: 18px 48px; font-size: 14px; font-weight: 700;
-  letter-spacing: 1px; text-decoration: none; transition: all 0.35s;
-}
-.cta-email:hover {
-  background: var(--gold-hover); transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(201, 150, 62, 0.3);
-}
-.cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.25); }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 8vw, 116px);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
 
-/* ===================== FOOTER ===================== */
-footer {
-  background: var(--navy); padding: 48px 56px;
-  border-top: 1px solid rgba(201, 150, 62, 0.06);
-}
-.footer-top {
-  display: flex; justify-content: space-between;
-  align-items: center; flex-wrap: wrap; gap: 24px;
-  padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.03);
-}
-.footer-logo {
-  display: flex; align-items: center; gap: 12px;
-  text-decoration: none; color: var(--white);
-}
-.footer-logo img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
-.footer-logo .name {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 14px; font-weight: 600; letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.footer-nav { display: flex; gap: 32px; list-style: none; }
-.footer-nav a {
-  color: rgba(255,255,255,0.35); text-decoration: none;
-  font-size: 13px; font-weight: 500; transition: color 0.3s;
-}
-.footer-nav a:hover { color: var(--gold); }
-.footer-bottom {
-  padding-top: 28px; display: flex; justify-content: space-between;
-  align-items: center; flex-wrap: wrap; gap: 12px;
-}
-.footer-copy { font-size: 12px; color: rgba(255,255,255,0.15); }
-.footer-email a {
-  font-size: 13px; color: rgba(255,255,255,0.3);
-  text-decoration: none; transition: color 0.3s;
-}
-.footer-email a:hover { color: var(--gold); }
+  .hero h1 .ventures-italic {
+    display: block;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+    text-transform: none;
+    letter-spacing: -0.005em;
+    margin-top: -8px;
+  }
 
-/* ===================== ANIMATIONS ===================== */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+  .hero-tagline {
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    margin-top: 36px;
+    font-weight: 400;
+  }
 
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 1024px) {
-  .about-grid { grid-template-columns: 1fr; gap: 48px; }
-  .criteria-layout { grid-template-columns: 1fr; }
-  .why-founder { grid-template-columns: 1fr; gap: 40px; }
-  .founder-photo { max-width: 260px; }
-  .why-points { grid-template-columns: 1fr; gap: 32px; }
-  .hero-logo { display: none; }
-}
-@media (max-width: 768px) {
-  nav { padding: 0 24px; }
-  .nav-links { display: none; }
-  .nav-cta { display: none; }
-  .mobile-menu-btn { display: block; }
-  .hero-content { padding: 120px 24px 80px; }
-  .hero h1 { font-size: 36px; }
-  .hero-desc { font-size: 15px; }
-  .hero-actions { flex-direction: column; }
-  .btn-gold, .btn-outline { text-align: center; }
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .about, .approach, .criteria, .why, .cta { padding: 80px 24px; }
-  .values-grid { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr; }
-  .step { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.04); padding: 36px 0; }
-  .why-points { grid-template-columns: 1fr; }
-  footer { padding: 36px 24px; }
-  .footer-top { flex-direction: column; align-items: flex-start; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
-}
+  .hero-tagline .dot {
+    color: var(--gold);
+    margin: 0 14px;
+  }
+
+  .hero-meta {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule-soft);
+    display: flex;
+    gap: 64px;
+  }
+
+  .hero-meta-item .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .hero-meta-item .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .hero-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-logo-wrap {
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    background: var(--navy-deep);
+    overflow: hidden;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+    opacity: 0.92;
+  }
+
+  .hero-logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* === SECTIONS === */
+  section {
+    padding: 120px 64px;
+    position: relative;
+  }
+
+  .section-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 500;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 20px;
+    max-width: 760px;
+  }
+
+  .section-heading em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .section-rule {
+    width: 56px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 48px;
+  }
+
+  .section-lede {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--cream-dim);
+    max-width: 720px;
+    margin-bottom: 56px;
+    font-weight: 300;
+  }
+
+  /* === ABOUT / WHY MAINSAIL === */
+  .about {
+    background: var(--navy-soft);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .founder-card {
+    border: 1px solid var(--rule);
+    padding: 36px;
+    background: rgba(15, 24, 35, 0.4);
+    position: relative;
+  }
+
+  .founder-card::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 28px; height: 28px;
+    border-top: 2px solid var(--gold);
+    border-left: 2px solid var(--gold);
+  }
+
+  .founder-card::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 28px; height: 28px;
+    border-bottom: 2px solid var(--gold);
+    border-right: 2px solid var(--gold);
+  }
+
+  .founder-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    background: var(--navy-deep);
+    overflow: hidden;
+    margin-bottom: 24px;
+    filter: saturate(0.85);
+    transition: filter 0.4s ease;
+  }
+
+  .founder-photo:hover { filter: saturate(1.05); }
+
+  .founder-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .founder-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .founder-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+
+  .founder-creds {
+    list-style: none;
+    border-top: 1px solid var(--rule-soft);
+    padding-top: 18px;
+  }
+
+  .founder-creds li {
+    font-size: 14px;
+    color: var(--cream-dim);
+    padding: 6px 0;
+    line-height: 1.5;
+  }
+
+  .founder-creds li::before {
+    content: '·';
+    color: var(--gold);
+    margin-right: 10px;
+    font-weight: 700;
+  }
+
+  .about-copy p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--cream-dim);
+    margin-bottom: 22px;
+    font-weight: 300;
+  }
+
+  .about-copy p strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  /* === FOCUS SECTION === */
+  .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .focus-card {
+    padding: 36px 32px;
+    border: 1px solid var(--rule-soft);
+    background: var(--navy-soft);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .focus-card:hover {
+    border-color: var(--rule);
+    transform: translateY(-2px);
+  }
+
+  .focus-card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .focus-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .focus-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--cream-dim);
+    font-weight: 300;
+  }
+
+  /* === TRACK RECORD === */
+  .track {
+    background: var(--navy-soft);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .track-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule-soft);
+    margin-top: 48px;
+    border: 1px solid var(--rule-soft);
+  }
+
+  .track-item {
+    background: var(--navy);
+    padding: 40px 28px;
+    text-align: left;
+  }
+
+  .track-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .track-label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .track-desc {
+    font-size: 13px;
+    color: var(--muted-blue);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  /* === CONTACT === */
+  .contact {
+    padding: 140px 64px;
+  }
+
+  .contact-grid {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .contact-card {
+    background: var(--cream);
+    color: var(--navy-deep);
+    padding: 48px;
+    border: 1px solid var(--gold);
+  }
+
+  .contact-card .contact-eyebrow {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  .contact-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--navy-deep);
+    margin-bottom: 6px;
+  }
+
+  .contact-card .role {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted-blue);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  .contact-rule {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .contact-rows {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px 28px;
+    font-size: 15px;
+  }
+
+  .contact-rows .label {
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted-blue);
+    font-weight: 600;
+    padding-top: 4px;
+  }
+
+  .contact-rows .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--navy-deep);
+  }
+
+  .contact-rows .value a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .contact-rows .value a:hover { border-color: var(--gold); }
+
+  /* === FOOTER === */
+  footer {
+    background: var(--navy-deep);
+    padding: 56px 64px 40px;
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-tag {
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted-blue);
+    font-weight: 500;
+  }
+
+  .footer-tag .gold-dot { color: var(--gold); }
+
+  .footer-disclaimer {
+    font-size: 11px;
+    color: var(--muted-blue);
+    line-height: 1.65;
+    font-weight: 300;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule-soft);
+    max-width: 880px;
+  }
+
+  /* === REVEAL ANIMATION === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 980px) {
+    nav { padding: 16px 24px; }
+    nav.scrolled { padding: 12px 24px; }
+    .nav-links { gap: 20px; }
+    .nav-links a:not(.investor-link) { display: none; }
+
+    .hero { padding: 120px 24px 60px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    .hero-logo-wrap { max-width: 260px; }
+    .hero-meta { gap: 32px; }
+
+    section { padding: 80px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .focus-grid { grid-template-columns: 1fr; }
+    .track-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact { padding: 80px 24px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .contact-card { padding: 32px; }
+    footer { padding: 40px 24px 32px; }
+  }
+
+  @media (max-width: 560px) {
+    .hero h1 { font-size: 56px; }
+    .track-grid { grid-template-columns: 1fr 1fr; }
+    .hero-meta { flex-direction: column; gap: 16px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ============ NAVIGATION ============ -->
+<!-- ============ NAV ============ -->
 <nav id="nav">
-  <a href="#" class="nav-logo">
-    <img src="logo.png" alt="Mainsail Ventures">
-    <div class="nav-wordmark">
-      <span class="name">Mainsail</span>
-      <span class="sub">Ventures</span>
+  <a href="#top" class="brand" aria-label="Mainsail Ventures home">
+    <div class="brand-mark">
+      <img src="/logo.png?v=3" alt="Mainsail Ventures" />
+    </div>
+    <div class="brand-text">
+      <span class="mainsail">Mainsail</span>
+      <span class="ventures-rule"></span>
+      <span class="ventures">Ventures</span>
     </div>
   </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#approach">Approach</a></li>
-    <li><a href="#criteria">Criteria</a></li>
-    <li><a href="#why">Why Mainsail</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">Get in Touch</a>
-  <button class="mobile-menu-btn" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#focus">Focus</a>
+    <a href="#contact">Contact</a>
+    <a href="/investors.html" class="investor-link">Investor Portal</a>
+  </div>
 </nav>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-glow"></div>
-  <img src="logo.png" alt="" class="hero-logo">
-  <div class="hero-content">
-    <span class="hero-label">Business Acquisition &amp; Operations</span>
-    <h1>Your Business Deserves a <em>Thoughtful</em> Transition</h1>
-    <p class="hero-desc">Mainsail Ventures acquires and operates established businesses with care, preserving the legacy you have built while unlocking the next chapter of growth.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-gold">Start a Conversation</a>
-      <a href="#approach" class="btn-outline">How It Works</a>
+  <div class="hero-grid">
+    <div class="reveal visible">
+      <div class="hero-eyebrow">Acquire · Operate · Grow</div>
+      <h1>
+        Mainsail
+        <span class="ventures-italic">Ventures</span>
+      </h1>
+      <div class="hero-tagline">
+        DC<span class="dot">·</span>MD<span class="dot">·</span>VA
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="label">Founded</div>
+          <div class="value">Gaithersburg, MD</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Focus</div>
+          <div class="value">Commercial Electrical</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Status</div>
+          <div class="value">Active Search</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-logo reveal visible">
+      <div class="hero-logo-wrap">
+        <img src="/logo.png?v=3" alt="Mainsail Ventures compass logo" />
+      </div>
     </div>
   </div>
 </section>
-
-<!-- ============ STATS ============ -->
-<div class="stats">
-  <div class="stat"><div class="stat-value">15+</div><div class="stat-label">Years Experience</div></div>
-  <div class="stat"><div class="stat-value">$1&#8211;25M</div><div class="stat-label">Revenue Range</div></div>
-  <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Operator Led</div></div>
-  <div class="stat"><div class="stat-value">Long-Term</div><div class="stat-label">Hold Period</div></div>
-</div>
 
 <!-- ============ ABOUT ============ -->
 <section class="about" id="about">
-  <div class="section-header reveal">
-    <div class="section-label">Who We Are</div>
-    <h2>Built to Operate,<br>Not to Flip</h2>
-  </div>
-  <div class="about-grid">
-    <div class="about-prose reveal reveal-delay-1">
-      <p><strong>Mainsail Ventures was founded on a simple belief:</strong> great businesses deserve great stewardship.  Too many acquisitions prioritize financial engineering over the people, customers, and culture that made a business successful in the first place.</p>
-      <p>We take a different approach.  As operator-owners, we step into the business alongside your team, bringing strategic leadership, operational expertise, and a genuine commitment to long-term growth.  We are not a fund with a five-year exit timeline.  We buy businesses to run them, improve them, and build on the foundation you created.</p>
-      <p>Our background spans over 15 years of operations, human capital strategy, and business management across complex, multi-site organizations.  We have led workforce integrations, built infrastructure from scratch, and managed transitions at every scale.  We understand that every business has its own DNA, and we work to preserve what makes yours special while investing in its future.</p>
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Why Mainsail</div>
+      <h2 class="section-heading">A local operator, <em>not a financial buyer.</em></h2>
+      <div class="section-rule"></div>
     </div>
-    <div class="values-grid">
-      <div class="value-card reveal reveal-delay-1">
-        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9963E" stroke-width="1.5"><path d="M12 2L12 22M12 2L20 10M12 2L4 10"/></svg></div>
-        <h4>Legacy First</h4>
-        <p>Your business represents decades of work.  We honor that by preserving your team, your customers, and your reputation.</p>
+    <div class="about-grid">
+      <div class="founder-card reveal">
+        <div class="founder-photo">
+          <img src="/Headshot.jpeg" alt="Steven Mitchell, Founder and Principal" />
+        </div>
+        <div class="founder-name">Steven Mitchell</div>
+        <div class="founder-title">Founder &amp; Principal</div>
+        <ul class="founder-creds">
+          <li>EMBA, University of Maryland Smith School of Business</li>
+          <li>B.A., Michigan State University</li>
+          <li>15+ years in business operations and HR leadership</li>
+          <li>Multi-entity integration and post-acquisition operations</li>
+          <li>Based in Gaithersburg, Maryland</li>
+        </ul>
       </div>
-      <div class="value-card reveal reveal-delay-2">
-        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9963E" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-        <h4>Hands-On Ownership</h4>
-        <p>We do not delegate from a distance.  Our team gets involved in day-to-day operations alongside your people.</p>
-      </div>
-      <div class="value-card reveal reveal-delay-3">
-        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9963E" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-        <h4>People Centered</h4>
-        <p>Employees are not line items.  We invest in the people who built the business, creating growth paths and stability.</p>
-      </div>
-      <div class="value-card reveal reveal-delay-4">
-        <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C9963E" stroke-width="1.5"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div>
-        <h4>Steady Growth</h4>
-        <p>We pursue sustainable, disciplined growth through operational improvements, not aggressive cost-cutting.</p>
+      <div class="about-copy reveal">
+        <p>
+          Mainsail Ventures was built to acquire and operate one excellent commercial electrical contractor in the DC, Maryland, and Virginia corridor. <strong>Not roll it up.  Not flip it.  Operate it.</strong>
+        </p>
+        <p>
+          The owner-operator businesses I am talking with were built over decades.  The people who built them deserve a buyer who understands what that looks like up close.  I live in Gaithersburg.  I will be in the field, in the trucks, and in the office every week.
+        </p>
+        <p>
+          My background is fifteen years of leading operations, HR, and integration work inside federal contracting.  I know how to take a small business through change without breaking what makes it good.  My approach pairs that operating discipline with a licensed Master Electrician partner, so the trade work stays in trade hands while the business strengthens around it.
+        </p>
+        <p>
+          If you are an owner thinking about what comes next, or someone who wants to back this kind of acquisition, I would like to talk.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ APPROACH ============ -->
-<section class="approach" id="approach">
-  <div class="section-header reveal">
-    <div class="section-label">Our Process</div>
-    <h2>A Seamless Path Forward</h2>
-    <p class="lead">Our acquisition process is designed to be straightforward, respectful of your time, and completely confidential from start to finish.</p>
-  </div>
-  <div class="steps">
-    <div class="step reveal reveal-delay-1">
-      <div class="step-num">01</div>
-      <h3>Discovery</h3>
-      <p>We begin with an informal, confidential conversation to understand your business, your goals, and what matters most to you in a transition.  No pressure, no obligations.</p>
+<!-- ============ FOCUS ============ -->
+<section id="focus">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Acquisition Focus</div>
+      <h2 class="section-heading">Targeted by <em>geography, trade, and growth lane.</em></h2>
+      <div class="section-rule"></div>
+      <p class="section-lede">
+        One business.  One region.  Three secular tailwinds that make commercial electrical the best risk-adjusted trade in the DMV right now.
+      </p>
     </div>
-    <div class="step reveal reveal-delay-2">
-      <div class="step-num">02</div>
-      <h3>Evaluation</h3>
-      <p>If there is a mutual fit, we conduct a thorough and thoughtful review of financials, operations, and culture.  We move efficiently and keep disruption to an absolute minimum.</p>
-    </div>
-    <div class="step reveal reveal-delay-3">
-      <div class="step-num">03</div>
-      <h3>Transition</h3>
-      <p>We work with you to create a transition plan that protects employees, maintains customer relationships, and ensures continuity.  Your legacy stays intact.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CRITERIA ============ -->
-<section class="criteria" id="criteria">
-  <div class="section-header reveal">
-    <div class="section-label">What We Look For</div>
-    <h2>Acquisition Criteria</h2>
-    <p class="lead">We focus on established, profitable businesses in essential services industries where our operational expertise can drive sustainable growth.</p>
-  </div>
-  <div class="criteria-layout">
-    <ul class="criteria-list">
-      <li class="criteria-item reveal">
-        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C9963E" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <div><h4>Established Track Record</h4><p>Businesses operating profitably for 10 or more years with a strong local or regional reputation.</p></div>
-      </li>
-      <li class="criteria-item reveal reveal-delay-1">
-        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C9963E" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <div><h4>Essential Services</h4><p>Industries where demand is steady and recurring, including electrical, safety, facilities, and building services.</p></div>
-      </li>
-      <li class="criteria-item reveal reveal-delay-2">
-        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C9963E" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <div><h4>Revenue Range</h4><p>Annual revenues between $1M and $25M with healthy margins and consistent cash flow.</p></div>
-      </li>
-      <li class="criteria-item reveal reveal-delay-3">
-        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C9963E" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <div><h4>Strong Team in Place</h4><p>Businesses where key employees are willing to stay through and beyond the ownership transition.</p></div>
-      </li>
-      <li class="criteria-item reveal reveal-delay-4">
-        <div class="check-circle"><svg viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#C9963E" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <div><h4>Owner Seeking Succession</h4><p>Founders ready for retirement, a new chapter, or simply looking for the right buyer who will take care of what they built.</p></div>
-      </li>
-    </ul>
-    <div class="criteria-sidebar reveal reveal-delay-2">
-      <h3>Not Sure If Your Business Qualifies?</h3>
-      <p>Every business is unique.  Even if you do not check every box above, we would love to have a conversation.  Many of our best partnerships started with an exploratory call.</p>
-      <a href="#contact" class="btn-gold">Let's Talk</a>
+    <div class="focus-grid">
+      <div class="focus-card reveal">
+        <div class="focus-card-num">01 / Geography</div>
+        <h3>Montgomery County and adjacent</h3>
+        <p>
+          Primary search in Montgomery County, with active outreach in Frederick, Howard, and Prince George's counties.  Local presence is a real advantage against private equity buyers who fly in for two-hour meetings.
+        </p>
+      </div>
+      <div class="focus-card reveal">
+        <div class="focus-card-num">02 / Trade</div>
+        <h3>Commercial electrical contracting</h3>
+        <p>
+          NAICS 238210, $2.5M to $20M revenue, owner-operator businesses where succession is a real question.  Service-heavy mix and a diversified customer base preferred.  Master Electrician operating partner already in place.
+        </p>
+      </div>
+      <div class="focus-card reveal">
+        <div class="focus-card-num">03 / Growth</div>
+        <h3>EV, BEPS, and life sciences</h3>
+        <p>
+          Maryland's Building Energy Performance Standards, the EV charging buildout, and the AstraZeneca and Samsung Biologics expansions in MoCo create a decade-long retrofit and fit-out tailwind for a well-run electrical contractor.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ WHY MAINSAIL ============ -->
-<section class="why" id="why">
-  <div class="section-header reveal">
-    <div class="section-label">Why Mainsail</div>
-    <h2>Most Buyers Look at Spreadsheets.<br>We Look at People.</h2>
-  </div>
-  <div class="why-founder">
-    <div class="founder-photo-wrap reveal reveal-delay-1">
-      <img src="Headshot.jpeg" alt="Steven - Founder and Principal of Mainsail Ventures" class="founder-photo">
-      <div class="founder-name">Steven Mitchell</div>
-      <div class="founder-title">Founder &amp; Principal</div>
-      <ul class="founder-credentials">
-        <li>MBA, University of Maryland</li>
-        <li>B.A., Michigan State University</li>
-        <li>15+ years in operations &amp; HR leadership</li>
-        <li>Multi-entity integration expertise</li>
-      </ul>
+<!-- ============ TRACK RECORD ============ -->
+<section class="track">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Track Record</div>
+      <h2 class="section-heading">A career spent <em>running things</em>, not just analyzing them.</h2>
+      <div class="section-rule"></div>
     </div>
-    <div class="why-content reveal reveal-delay-2">
-      <blockquote>You did not build this business to hand it off to a stranger with a spreadsheet.  Mainsail Ventures is led by an operator with over 15 years of experience managing teams, integrating organizations, and building the systems that make businesses run.  We are not learning on the job.  We are bringing a career's worth of leadership to yours.</blockquote>
-    </div>
-  </div>
-  <div class="why-points">
-    <div class="why-point reveal reveal-delay-1">
-      <div class="accent"></div>
-      <h4>Operator First, Investor Second</h4>
-      <p>Our background is in running organizations, not financial engineering.  We know how to manage people, build processes, and drive results from the inside.</p>
-    </div>
-    <div class="why-point reveal reveal-delay-2">
-      <div class="accent"></div>
-      <h4>Integration Expertise</h4>
-      <p>We have led complex workforce integrations across multi-entity organizations.  We know how to bring teams together without disruption.</p>
-    </div>
-    <div class="why-point reveal reveal-delay-3">
-      <div class="accent"></div>
-      <h4>Your Team Stays. Your Culture Stays.</h4>
-      <p>Selling your business is personal.  Our people-first approach means your employees are in experienced hands from day one.</p>
+    <div class="track-grid reveal">
+      <div class="track-item">
+        <div class="track-num">$4.2M</div>
+        <div class="track-label">Annual cost savings</div>
+        <div class="track-desc">Sustained savings delivered through operational redesign, vendor consolidation, and process efficiency programs.</div>
+      </div>
+      <div class="track-item">
+        <div class="track-num">38%</div>
+        <div class="track-label">Efficiency gain</div>
+        <div class="track-desc">Reduced operational cycle times and eliminated redundancies across back-office functions during rapid growth.</div>
+      </div>
+      <div class="track-item">
+        <div class="track-num">Hundreds</div>
+        <div class="track-label">Of employees</div>
+        <div class="track-desc">Led full business integration during a corporate acquisition across multiple entities and locations.</div>
+      </div>
+      <div class="track-item">
+        <div class="track-num">From Scratch</div>
+        <div class="track-label">Operations infrastructure</div>
+        <div class="track-desc">Built systems, policies, and scalable processes from the ground up during a period of rapid growth.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CONTACT CTA ============ -->
-<section class="cta" id="contact">
-  <div class="cta-inner reveal">
-    <div class="section-label">Get in Touch</div>
-    <h2>Ready to Explore<br>What's Next?</h2>
-    <p>Whether you are actively looking to sell or just beginning to think about succession, we welcome a confidential, no-obligation conversation.</p>
-    <a id="cta-email-link" href="#" class="cta-email"></a>
-    <div class="cta-note">All inquiries are confidential.</div>
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2 class="section-heading">Build something <em>durable</em> with us.</h2>
+      <div class="section-rule"></div>
+      <p class="section-lede">
+        Conversations welcome with senior lenders, equity investors, experienced ETA advisors, and Maryland business owners thinking about succession.  All inquiries confidential.
+      </p>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-eyebrow">Principal Contact</div>
+      <h3>Steven Mitchell</h3>
+      <div class="role">Founder &amp; Principal</div>
+      <div class="contact-rule"></div>
+      <div class="contact-rows">
+        <div class="label">Email</div>
+        <div class="value"><a href="mailto:steve@mainsail.group">steve@mainsail.group</a></div>
+        <div class="label">Phone</div>
+        <div class="value"><a href="tel:+16169158727">616.915.8727</a></div>
+        <div class="label">Web</div>
+        <div class="value"><a href="https://mainsail.group">mainsail.group</a></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ============ FOOTER ============ -->
 <footer>
-  <div class="footer-top">
-    <a href="#top" class="footer-logo">
-      <img src="logo.png" alt="Mainsail Ventures">
-      <span class="name">Mainsail Ventures</span>
-    </a>
-    <ul class="footer-nav">
-      <li><a href="#about">About</a></li>
-      <li><a href="#approach">Approach</a></li>
-      <li><a href="#criteria">Criteria</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">&copy; 2026 Mainsail Ventures.  All rights reserved.</div>
-    <div class="footer-email"><a id="footer-email-link" href="#"></a></div>
+  <div class="footer-inner">
+    <div class="footer-row">
+      <div class="footer-tag">
+        Mainsail Ventures <span class="gold-dot">·</span> Gaithersburg, MD <span class="gold-dot">·</span> Est. 2026
+      </div>
+      <div class="footer-tag">
+        Acquire <span class="gold-dot">·</span> Operate <span class="gold-dot">·</span> Grow
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      The information presented on this website is for general informational purposes only and does not constitute an offer to sell, or a solicitation of an offer to buy, any security.  Any such offer will be made only by means of confidential offering documents to qualified investors with whom Mainsail Ventures has a pre-existing substantive relationship.  Past results and forward-looking statements are not a guarantee of future performance.
+    </div>
   </div>
 </footer>
 
-<!-- ============ SCRIPTS ============ -->
 <script>
-(function() {
-  var u = 'steve';
-  var d = 'mainsail.group';
-  var full = u + String.fromCharCode(64) + d;
-  var ml = 'mai' + 'lto:' + full;
-  var a = document.getElementById('cta-email-link');
-  if (a) { a.href = ml; a.textContent = full; }
-  var b = document.getElementById('footer-email-link');
-  if (b) { b.href = ml; b.textContent = full; }
-})();
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('hidden'); });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) { entry.target.classList.remove('hidden'); }
+  // Nav scroll style
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -10px 0px' });
 
-document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
-
-var navEl = document.getElementById('nav');
-window.addEventListener('scroll', function() {
-  if (window.scrollY > 60) { navEl.classList.add('scrolled'); }
-  else { navEl.classList.remove('scrolled'); }
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    e.preventDefault();
-    var target = document.querySelector(a.getAttribute('href'));
-    if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const t = document.querySelector(id);
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      }
+    });
   });
-});
 </script>
 
 </body>
