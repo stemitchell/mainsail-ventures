@@ -138,6 +138,20 @@
   }
   .nav-links a:hover { color: var(--gold); }
 
+  /* Highlighted portal link */
+  .nav-links a.portal {
+    color: var(--gold);
+    border: 1px solid var(--rule);
+    padding: 8px 14px;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+  }
+  .nav-links a.portal:hover {
+    background: rgba(201, 150, 62, 0.12);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
   .nav-cta {
     font-family: 'Manrope', sans-serif;
     color: var(--gold);
@@ -203,7 +217,7 @@
   }
   .hero-content {
     position: relative; z-index: 2;
-    max-width: 760px;
+    max-width: 1100px;
     padding: 140px 56px 120px;
   }
   .hero-label {
@@ -216,12 +230,14 @@
   }
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(48px, 7vw, 84px);
+    font-size: clamp(42px, 5.5vw, 68px);
     font-weight: 500;
     line-height: 1.05;
     letter-spacing: -0.005em;
     color: var(--cream);
     margin-bottom: 28px;
+    text-wrap: balance;
+    max-width: 920px;
   }
   .hero h1 em {
     font-style: italic;
@@ -876,7 +892,7 @@
     <li><a href="#approach">Approach</a></li>
     <li><a href="#criteria">Criteria</a></li>
     <li><a href="#why">Why Mainsail</a></li>
-    <li><a href="/investors.html">Investor Portal</a></li>
+    <li><a href="/investors.html" class="portal">Investor Portal</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Get in Touch</a>
   <button class="mobile-menu-btn" aria-label="Menu">
@@ -917,9 +933,9 @@
   </div>
   <div class="about-grid">
     <div class="about-prose reveal reveal-delay-1">
-      <p><strong>Mainsail Ventures was founded on a simple belief:</strong> great businesses deserve great stewardship.  Too many acquisitions prioritize financial engineering over the people, customers, and culture that made a business successful in the first place.</p>
-      <p>We take a different approach.  As operator-owners, we step into the business alongside your team, bringing strategic leadership, operational expertise, and a genuine commitment to long-term growth.  We are not a fund with a five-year exit timeline.  We buy businesses to run them, improve them, and build on the foundation you created.</p>
-      <p>Our background spans over 15 years of operations leadership and business management across complex, multi-site organizations.  We have led workforce integrations, built infrastructure from scratch, and managed transitions at every scale.  We understand that every business has its own DNA, and we work to preserve what makes yours special while investing in its future.</p>
+      <p>Most acquirers look at a business and see a balance sheet.  We look at the same business and see the people who built it, the customers who count on it, and the culture that holds it together.  Too many deals prioritize financial engineering over operating reality.  Mainsail Ventures was built to do this differently.</p>
+      <p>As operator-owners, we step into the business alongside your team and bring real operational expertise, not just capital.  We are not a fund with a five-year exit timeline.  We buy businesses to run them, improve them, and build on the foundation you created.</p>
+      <p>Our background spans over 15 years of operations leadership and business management across complex, multi-site organizations.  We have led workforce transitions, built infrastructure from scratch, and managed change at every scale.  Every business has its own DNA.  We work to preserve what makes yours special while investing in its future.</p>
     </div>
     <div class="values-grid">
       <div class="value-card reveal reveal-delay-1">
